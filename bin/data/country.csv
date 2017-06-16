@@ -1,0 +1,184 @@
+id,iso_code,state,value
+1,IND,India,234.1
+2,CHN,China,188.6
+3,USA,United States of America,89.9
+4,RUS,Russian Federation,73
+5,NGA,Nigeria,29.2
+6,JPN,Japan,26.3
+7,BRA,Brazil,22.8
+8,UKR,Ukraine,20.3
+9,KOR,Republic of Korea,16.8
+10,DEU,Germany,16.5
+11,FRA,France,15.9
+12,THA,Thailand,13.2
+13,BGD,Bangladesh,11.6
+14,POL,Poland,11.3
+15,ETH,Ethiopia,9.7
+16,MEX,Mexico,9.6
+17,IDN,Indonesia,8.7
+18,GBR,United Kingdom,8.5
+19,COD,Democratic Republic of the Congo,8.4
+20,VNM,Viet Nam,8.2
+21,LKA,Sri Lanka,7.7
+22,TUR,Turkey,7.5
+23,ARG,Argentina,7.3
+24,ZAF,South Africa,6.4
+25,CAN,Canada,6.2
+26,ITA,Italy,6
+27,AGO,Angola,5.7
+28,KAZ,Kazakhstan,5.5
+29,PAK,Pakistan,5.5
+30,EGY,Egypt,5.3
+31,PHL,Philippines,5.3
+32,CIV,Côte d'Ivoire,5.3
+33,IRN,Iran (Islamic Republic of),5.1
+34,ESP,Spain,4.9
+35,PRK,Democratic People's Republic of Korea,4.7
+36,SDN,Sudan,4.4
+37,TZA,United Republic of Tanzania,4.3
+38,MMR,Myanmar,4.3
+39,BLR,Belarus,4.1
+40,CMR,Cameroon,4
+41,AUS,Australia,3.8
+42,KEN,Kenya,3.5
+43,COL,Colombia,3.2
+44,ROU,Romania,3.2
+45,UGA,Uganda,3
+46,UZB,Uzbekistan,3
+47,MAR,Morocco,2.8
+48,GHA,Ghana,2.6
+49,MOZ,Mozambique,2.5
+50,BEL,Belgium,2.5
+51,HUN,Hungary,2.4
+52,MYS,Malaysia,2.3
+53,NLD,Netherlands,2.3
+54,BOL,Bolivia (Plurinational State of),2.3
+55,PER,Peru,2.3
+56,YEM,Yemen,2.3
+57,BFA,Burkina Faso,2.1
+58,CHL,Chile,2.1
+59,CUB,Cuba,2.1
+60,KHM,Cambodia,2
+61,SWE,Sweden,2
+62,ZWE,Zimbabwe,1.8
+63,TCD,Chad,1.7
+64,NPL,Nepal,1.7
+65,SRB,Serbia,1.7
+66,AFG,Afghanistan,1.7
+67,AUT,Austria,1.6
+68,CZE,Czechia,1.6
+69,PRT,Portugal,1.6
+70,DZA,Algeria,1.5
+71,ECU,Ecuador,1.5
+72,SLV,El Salvador,1.5
+73,GTM,Guatemala,1.5
+74,CHE,Switzerland,1.5
+75,HTI,Haiti,1.3
+76,SEN,Senegal,1.3
+77,BEN,Benin,1.2
+78,GIN,Guinea,1.2
+79,MLI,Mali,1.2
+80,TUN,Tunisia,1.2
+81,ZMB,Zambia,1.2
+82,DNK,Denmark,1.2
+83,FIN,Finland,1.2
+84,IRQ,Iraq,1.2
+85,BGR,Bulgaria,1.1
+86,RWA,Rwanda,1.1
+87,MDG,Madagascar,1.1
+88,TGO,Togo,1.1
+89,BDI,Burundi,1
+90,SLE,Sierra Leone,1
+91,SSD,South Sudan,1
+92,MWI,Malawi,1
+93,SAU,Saudi Arabia,1
+94,MNG,Mongolia,0.9
+95,LTU,Lithuania,0.9
+96,DOM,Dominican Republic,0.8
+97,LAO,Lao People's Democratic Republic,0.8
+98,NIC,Nicaragua,0.8
+99,NOR,Norway,0.8
+100,SVK,Slovakia,0.8
+101,VEN,Venezuela (Bolivarian Republic of),0.8
+102,CAF,Central African Republic,0.7
+103,HRV,Croatia,0.7
+104,KGZ,Kyrgyzstan,0.7
+105,NER,Niger,0.7
+106,MDA,Republic of Moldova,0.7
+107,PNG,Papua New Guinea,0.6
+108,IRL,Ireland,0.6
+109,GRC,Greece,0.5
+110,LVA,Latvia,0.5
+111,PRY,Paraguay,0.5
+112,SGP,Singapore,0.5
+113,TKM,Turkmenistan,0.5
+114,URY,Uruguay,0.5
+115,COG,Congo,0.4
+116,SVN,Slovenia,0.4
+117,AZE,Azerbaijan,0.3
+118,CRI,Costa Rica,0.3
+119,ERI,Eritrea,0.3
+120,EST,Estonia,0.3
+121,ISR,Israel,0.3
+122,NZL,New Zealand,0.3
+123,SOM,Somalia,0.3
+124,SYR,Syrian Arab Republic,0.3
+125,ARE,United Arab Emirates,0.3
+126,BWA,Botswana,0.2
+127,GEO,Georgia,0.2
+128,JOR,Jordan,0.2
+129,LBR,Liberia,0.2
+130,LBY,Libyan Arab Jamahiriya,0.2
+131,OMN,Oman,0.2
+132,PAN,Panama,0.2
+133,QAT,Qatar,0.2
+134,TJK,Tajikistan,0.2
+135,GNQ,Equatorial Guinea,0.1
+136,GAB,Gabon,0.1
+137,GUY,Guyana,0.1
+138,HND,Honduras,0.1
+139,KWT,Kuwait,0.1
+140,LSO,Lesotho,0.1
+141,NAM,Namibia,0.1
+142,SWZ,Swaziland,0.1
+143,TTO,Trinidad and Tobago,0.1
+144,ALB,Albania,0
+145,ATG,Antigua and Barbuda,0
+146,ARM,Armenia,0
+147,BHS,Bahamas,0
+148,BHR,Bahrain,0
+149,BRB,Barbados,0
+150,BLZ,Belize,0
+151,BTN,Bhutan,0
+152,BIH,Bosnia and Herzegovina,0
+153,BRN,Brunei Darussalam,0
+154,CPV,Cape Verde,0
+155,COM,Comoros,0
+156,CYP,Cyprus,0
+157,DJI,Djibouti,0
+158,FJI,Fiji,0
+159,GMB,Gambia,0
+160,GRD,Grenada,0
+161,GNB,Guinea-Bissau,0
+162,ISL,Iceland,0
+163,JAM,Jamaica,0
+164,KIR,Kiribati,0
+165,LBN,Lebanon,0
+166,LUX,Luxembourg,0
+167,MDV,Maldives,0
+168,MLT,Malta,0
+169,MRT,Mauritania,0
+170,MUS,Mauritius,0
+171,FSM,Micronesia (Federated States of),0
+172,MNE,Montenegro,0
+173,LCA,Saint Lucia,0
+174,VCT,Saint Vincent and the Grenadines,0
+175,WSM,Samoa,0
+176,STP,Sao Tome and Principe,0
+177,SYC,Seychelles,0
+178,SLB,Solomon Islands,0
+179,SUR,Suriname,0
+180,MKD,The former Yugoslav Republic of Macedonia,0
+181,TLS,Timor-Leste,0
+182,TON,Tonga,0
+183,VUT,Vanuatu,0
