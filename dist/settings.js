@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var settings = {
-    PORT: '3000',
+    PORT: '3307',
     DB_HOST: 'localhost',
     DB_USER: 'root',
-    DB_PASS: '',
-    DB_NAME: 'stats'
+    DB_PASS: 'ayumu198961',
+    DB_NAME: 'suicide_stats'
 };
 
 exports.default = settings;

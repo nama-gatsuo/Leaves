@@ -2,3 +2,5 @@
 /node_modules
 /bin/data_backup
 *.map
+
+*/settings.js

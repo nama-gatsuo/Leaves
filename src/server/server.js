@@ -1,10 +1,8 @@
 import express from 'express'
 import path from 'path'
 import logger from 'morgan'
-import mysql from 'mysql'
 import http from 'http'
 import socketIo from 'socket.io'
-
 import settings from './settings'
 
 let app = express();
@@ -24,13 +22,6 @@ let port = normalizePort(settings.PORT);
 app.set('port', port);
 
 let server = http.createServer(app);
-
-let db = mysql.createConnection({
-    host: settings.HOST,
-    user: settings.USER,
-    password: settings.DB_PASS,
-    database: settings.DB_NAME
-});
 
 server.listen(port);
 server.on('error', onError);
@@ -61,7 +52,7 @@ function normalizePort(val) {
     return false;
 };
 
-function onError() {
+function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
     }
@@ -89,4 +80,6 @@ function onListening() {
     console.log('Listening on ' + bind);
 };
 
-console.log("server starting...");
+console.log("Server starting...");
+
+import timer from './timer'

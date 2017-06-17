@@ -12,10 +12,6 @@ var _morgan = require('morgan');
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
-var _mysql = require('mysql');
-
-var _mysql2 = _interopRequireDefault(_mysql);
-
 var _http = require('http');
 
 var _http2 = _interopRequireDefault(_http);
@@ -27,6 +23,10 @@ var _socket2 = _interopRequireDefault(_socket);
 var _settings = require('./settings');
 
 var _settings2 = _interopRequireDefault(_settings);
+
+var _timer = require('./timer');
+
+var _timer2 = _interopRequireDefault(_timer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47,13 +47,6 @@ var port = normalizePort(_settings2.default.PORT);
 app.set('port', port);
 
 var server = _http2.default.createServer(app);
-
-var db = _mysql2.default.createConnection({
-    host: _settings2.default.HOST,
-    user: _settings2.default.USER,
-    password: _settings2.default.DB_PASS,
-    database: _settings2.default.DB_NAME
-});
 
 server.listen(port);
 server.on('error', onError);
@@ -84,7 +77,7 @@ function normalizePort(val) {
     return false;
 };
 
-function onError() {
+function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
     }
@@ -112,5 +105,5 @@ function onListening() {
     console.log('Listening on ' + bind);
 };
 
-console.log("server starting...");
+console.log("Server starting...");
 //# sourceMappingURL=server.js.map
