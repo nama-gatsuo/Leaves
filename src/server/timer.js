@@ -42,7 +42,7 @@ function check() {
     for (let i = 0; i < COUNTRYS.length; i++) {
         current += COUNTRYS[i].value;
         if (coin < current) {
-            code = COUNTRYS[i].country_code;
+            code = COUNTRYS[i].code_who;
             name = COUNTRYS[i].country_name;
             amount = COUNTRYS[i].value;
             break;
@@ -79,6 +79,7 @@ function check() {
         console.log("AGE: " + age);
         console.log("REASON: " + reason);
 
+        console.log("--");
     });
 
     setTimeout(() => {
