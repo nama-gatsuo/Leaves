@@ -4,3 +4,4 @@
 *.map
 
 **/settings.js
+*.app
