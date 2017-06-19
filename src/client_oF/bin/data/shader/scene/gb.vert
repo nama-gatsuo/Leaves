@@ -20,9 +20,11 @@ void main(){
     gl_Position = modelViewProjectionMatrix * position;
 
     vec4 viewPos = modelViewMatrix * position;
+    vPosition = viewPos;
+
     vDepth = - viewPos.z / (farClip - nearClip);
     vNormal = (normalMatrix * normal).xyz;
     vTexCoord = texcoord;
     vColor = color;
-    vPosition = viewPos;
+
 }

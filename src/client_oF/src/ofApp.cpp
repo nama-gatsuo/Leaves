@@ -6,6 +6,9 @@ void ofApp::setup(){
     
     es.setup();
     setupDeferred();
+    
+    cam.setFarClip(2000);
+    cam.setNearClip(1.0);
 }
 
 //--------------------------------------------------------------
@@ -36,9 +39,18 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
+    
+    shadowLightPass->beginShadowMap(true);
+    es.draw(shadowLightPass->getCam(), true);
+    shadowLightPass->endShadowMap();
+    
     deferred.begin(cam, true);
-    es.draw(cam);
+    es.draw(cam, false);
     deferred.end();
+    
+//    shadowLightPass->debugDraw();
+//    deferred.debugDraw();
     
     if (isShow) panel.draw();
 }
@@ -46,6 +58,7 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (key == 's') isShow = !isShow;
+    if (key == ' ') es.addParticle(ofRandom(PI), ofRandom(TWO_PI));
 }
 
 //--------------------------------------------------------------
@@ -57,9 +70,9 @@ void ofApp::setupDeferred(){
     deferred.init(ofGetWidth(), ofGetHeight());
     ssaoPass = deferred.createPass<SsaoPass>().get();
     
-    //    shadowLightPass = deferred.createPass<ShadowLightPass>().get();
-    //    shadowLightPass->lookAt(ofVec3f(0.0));
-    //    shadowLightPass->setCam(60, 0.1, 3000);
+    shadowLightPass = deferred.createPass<ShadowLightPass>().get();
+    shadowLightPass->lookAt(ofVec3f(0.0));
+    shadowLightPass->setCam(60, 0.1, 5000);
     
     lightingPass = deferred.createPass<PointLightPass>().get();
     ofxDeferredShading::PointLight dlight;
@@ -95,12 +108,12 @@ void ofApp::setupDeferred(){
     ao.add(ao_dark.set("Darkness", 0.8, 0.1, 5.0));
     panel.add(ao);
     
-    //    shadow.setName("Shadow Light");
-    //    shadow.add(sha_amb.set("Ambient", 0.0, 0.0, 1.0));
-    //    shadow.add(sha_dif.set("Diffuse", 0.0, 0.3, 1.0));
-    //    shadow.add(sha_dark.set("Shadow Darkness", 0.4, 0.0, 1.0));
-    //    shadow.add(sha_blend.set("Lighting Blend", 0.4, 0.0, 1.0));
-    //    panel.add(shadow);
+    shadow.setName("Shadow Light");
+    shadow.add(sha_amb.set("Ambient", 0.0, 0.0, 1.0));
+    shadow.add(sha_dif.set("Diffuse", 0.0, 0.3, 1.0));
+    shadow.add(sha_dark.set("Shadow Darkness", 0.4, 0.0, 1.0));
+    shadow.add(sha_blend.set("Lighting Blend", 0.4, 0.0, 1.0));
+    panel.add(shadow);
     
     dof.setName("Defocus Blur");
     dof.add(dof_blur.set("Max Blur", 0.5, 0.0, 1.0));
@@ -126,13 +139,13 @@ void ofApp::updateDeferredParam(){
     ssaoPass->setOcculusionRadius(ao_rad.get());
     ssaoPass->setDrakness(ao_dark.get());
     
-    //    shadowLightPass->setAmbientColor(ofFloatColor(sha_amb.get()));
-    //    shadowLightPass->setDiffuseColor(ofFloatColor(sha_dif.get()));
-    //    shadowLightPass->setDarkness(sha_dark.get());
-    //    shadowLightPass->setBlend(sha_blend.get());
-    //
-    //    shadowLightPass->setPosition(0, 1000.0, 2000);
-    //    shadowLightPass->lookAt(ofVec3f(0.0));
+    shadowLightPass->setAmbientColor(ofFloatColor(sha_amb.get()));
+    shadowLightPass->setDiffuseColor(ofFloatColor(sha_dif.get()));
+    shadowLightPass->setDarkness(sha_dark.get());
+    shadowLightPass->setBlend(sha_blend.get());
+    
+    shadowLightPass->setPosition(1500 * sin(ofGetElapsedTimef()),0, 1500 * cos(ofGetElapsedTimef()));
+    shadowLightPass->lookAt(ofVec3f(0.0));
     
     dofPass->setFocus(dof_focal.get());
     dofPass->setMaxBlur(dof_blur.get());

@@ -33,7 +33,7 @@ private:
     ofxDeferredProcessing deferred;
     PointLightPass* lightingPass;
     SsaoPass* ssaoPass;
-    //    ShadowLightPass* shadowLightPass;
+    ShadowLightPass* shadowLightPass;
     DofPass* dofPass;
     
     // gui
