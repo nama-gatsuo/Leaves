@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "EmitterSphere.hpp"
+#include "CommonUtil.hpp"
 
 #include "ofxDeferredShading.h"
 #include "ofxGui.h"
@@ -28,7 +29,12 @@ private:
     void updateDeferredParam();
     
     EmitterSphere es;
+    
     ofEasyCam cam;
+    SmoothValue theta;
+    SmoothValue rho;
+    SmoothValue radius;
+    SmoothPoint lookAt;
     
     ofxDeferredProcessing deferred;
     PointLightPass* lightingPass;
@@ -37,21 +43,8 @@ private:
     DofPass* dofPass;
     
     // gui
-    bool isShow = true;
+    bool isShow = false;
     ofxPanel panel;
-    ofParameterGroup pl1;
-    ofParameter<ofVec3f> pl1_pos;
-    ofParameter<ofFloatColor> pl1_diff;
-    ofParameter<ofFloatColor> pl1_spe;
-    ofParameter<float> pl1_int;
-    ofParameter<float> pl1_rad;
-    
-    ofParameterGroup pl2;
-    ofParameter<ofVec3f> pl2_pos;
-    ofParameter<ofFloatColor> pl2_diff;
-    ofParameter<ofFloatColor> pl2_spe;
-    ofParameter<float> pl2_int;
-    ofParameter<float> pl2_rad;
     
     ofParameterGroup ao;
     ofParameter<float> ao_rad;

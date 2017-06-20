@@ -52,11 +52,11 @@ public:
         lShader.setGeometryOutputCount(24);
         
         lShader.load("shader/scene/lines.vert", "shader/scene/lines.frag", "shader/scene/lines.geom");
-        sphere = ofMesh::sphere(300);
+        sphere = ofMesh::sphere(300, 15);
         for (int i = 0; i < sphere.getNumVertices(); i++) {
             sphere.addColor(ofFloatColor(1.0));
         }
-        p = ofMesh::sphere(10, 3);
+        p = ofMesh::sphere(10, 5);
         for (int i = 0; i < p.getNumVertices(); i++) {
             p.addColor(ofFloatColor(0.8, 1.2, 1.0));
         }
@@ -78,6 +78,7 @@ public:
             }
         }
         
+        
     };
     void draw(ofCamera cam, bool isShadow){
         
@@ -96,8 +97,7 @@ public:
             p.draw();
             ofPopMatrix();
         }
-        
-        sphere.draw();
+        sphere.draw(OF_MESH_FILL);
         
         gbShader.end();
         
@@ -117,14 +117,17 @@ public:
     
     void addParticle(float lat, float lon){
         ofVec3f v;
-//        lon += PI;
         lat = - PI/2. + lat;
         v.x = sin(lon) * sin(lat);
         v.z = cos(lon) * sin(lat);
         v.y = cos(lat);
         v.normalize();
         
-        ps.push_back(Particle(v, ofRandom(0.5, 1.)));
+        ps.push_back(Particle(v, 0.5));
+    };
+    
+    vector<Particle> getParticles(){
+        return ps;
     };
 private:
     ofShader lShader;
