@@ -10,10 +10,10 @@ export default class App {
         this.exp = express();
 
         this.exp.use(logger('dev'));
-        this.exp.use(express.static(path.join(__dirname, '/public')));
+        this.exp.use(express.static(path.join(__dirname, '../public')));
 
         this.exp.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname, '../', 'index.html'));
+            res.sendFile(path.join(__dirname, '../public', 'index.html'));
         });
 
         // this.get('/about', (req, res) => {

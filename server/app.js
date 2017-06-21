@@ -37,10 +37,10 @@ var App = function () {
         this.exp = (0, _express2.default)();
 
         this.exp.use((0, _morgan2.default)('dev'));
-        this.exp.use(_express2.default.static(_path2.default.join(__dirname, '/public')));
+        this.exp.use(_express2.default.static(_path2.default.join(__dirname, '../public')));
 
         this.exp.get('/', function (req, res) {
-            res.sendFile(_path2.default.join(__dirname, '../', 'index.html'));
+            res.sendFile(_path2.default.join(__dirname, '../public', 'index.html'));
         });
 
         // this.get('/about', (req, res) => {

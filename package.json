@@ -8,18 +8,29 @@
   },
   "author": "",
   "license": "ISC",
+  "browserify-shim": {
+    "jquery": "global:$"
+  },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "browserify-shim": "^3.8.14",
     "express": "^4.15.3",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
+    "gulp-pleeease": "^2.0.2",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
     "morgan": "^1.8.2",
     "mysql": "^2.13.0",
     "osc": "^2.2.0",
     "path": "^0.12.7",
     "socket.io": "^2.0.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
     "ws": "^3.0.0"
   }
 }

@@ -2,11 +2,12 @@ import mysql from 'mysql'
 import WebSocket from 'ws'
 import osc from 'osc'
 import http from 'http'
+import socketIo from 'socket.io'
 
 import settings from './settings'
 
 export default class Timer {
-    constructor(){
+    constructor(server){
 
         this.COUNTRYS = [];
         this.SUM = 0.0;
@@ -31,6 +32,17 @@ export default class Timer {
         });
 
         this.udpPort.open();
+
+        this.io = socketIo.listen(server);
+        this.io.sockets.on('connection', socket => {
+
+            console.log('a user connected');
+
+            socket.on('disconnect', () => {
+                console.log('user disconnected');
+            });
+
+        });
     }
 
     init(){
@@ -149,5 +161,13 @@ export default class Timer {
             ]
         }, "127.0.0.1", settings.OF_PORT);
 
+        let msg = {
+            country: this.d.country,
+            city: this.d.city,
+            age: this.d.age,
+            sex: this.d.sex,
+            reason: this.d.reason
+        };
+        this.io.emit('new', msg);
     }
 }

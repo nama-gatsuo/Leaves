@@ -15,7 +15,7 @@ var _timer2 = _interopRequireDefault(_timer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = new _app2.default();
-var timer = new _timer2.default();
+var timer = new _timer2.default(app.server);
 timer.init();
 
 // let io = socketIo.listen(server);

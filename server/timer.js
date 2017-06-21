@@ -22,6 +22,10 @@ var _http = require('http');
 
 var _http2 = _interopRequireDefault(_http);
 
+var _socket = require('socket.io');
+
+var _socket2 = _interopRequireDefault(_socket);
+
 var _settings = require('./settings');
 
 var _settings2 = _interopRequireDefault(_settings);
@@ -31,7 +35,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Timer = function () {
-    function Timer() {
+    function Timer(server) {
         _classCallCheck(this, Timer);
 
         this.COUNTRYS = [];
@@ -57,6 +61,16 @@ var Timer = function () {
         });
 
         this.udpPort.open();
+
+        this.io = _socket2.default.listen(server);
+        this.io.sockets.on('connection', function (socket) {
+
+            console.log('a user connected');
+
+            socket.on('disconnect', function () {
+                console.log('user disconnected');
+            });
+        });
     }
 
     _createClass(Timer, [{
@@ -170,6 +184,15 @@ var Timer = function () {
                 address: "/",
                 args: [{ type: 's', value: this.d.country }, { type: 's', value: this.d.city }, { type: 's', value: this.d.age }, { type: 's', value: this.d.sex }, { type: 's', value: this.d.reason }, { type: 'f', value: this.d.lat }, { type: 'f', value: this.d.lon }]
             }, "127.0.0.1", _settings2.default.OF_PORT);
+
+            var msg = {
+                country: this.d.country,
+                city: this.d.city,
+                age: this.d.age,
+                sex: this.d.sex,
+                reason: this.d.reason
+            };
+            this.io.emit('new', msg);
         }
     }]);
 
