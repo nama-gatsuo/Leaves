@@ -1,1 +1,1 @@
-*{margin:0;padding:0}.listItem{margin:12px;padding:8px}.listItem .place{font-size:1.5em;font-weight:600}
+@import"https://fonts.googleapis.com/css?family=Open+Sans";*{margin:0;padding:0}.listItem{list-style:none;font-family:Open Sans,sans-serif;margin:12px;padding:8px;color:#000;border-bottom:#aaa 1px solid}.listItem .place{font-size:1.5em;font-weight:600}
