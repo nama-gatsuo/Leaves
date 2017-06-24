@@ -10,10 +10,6 @@ var _mysql = require('mysql');
 
 var _mysql2 = _interopRequireDefault(_mysql);
 
-var _ws = require('ws');
-
-var _ws2 = _interopRequireDefault(_ws);
-
 var _osc = require('osc');
 
 var _osc2 = _interopRequireDefault(_osc);

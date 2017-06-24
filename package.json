@@ -17,6 +17,7 @@
     "browserify": "^14.4.0",
     "browserify-shim": "^3.8.14",
     "express": "^4.15.3",
+    "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
@@ -30,7 +31,6 @@
     "path": "^0.12.7",
     "socket.io": "^2.0.3",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "ws": "^3.0.0"
+    "vinyl-source-stream": "^1.1.0"
   }
 }

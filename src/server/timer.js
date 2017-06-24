@@ -1,5 +1,4 @@
 import mysql from 'mysql'
-import WebSocket from 'ws'
 import osc from 'osc'
 import http from 'http'
 import socketIo from 'socket.io'
