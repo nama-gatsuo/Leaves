@@ -37,6 +37,7 @@ void DataPoints::draw(){
     shader.begin();
     mesh.draw();
     shader.end();
+    
     ofDisableBlendMode();
 }
 
@@ -62,4 +63,6 @@ void DataPoints::add(float lat, float lon, bool isMale){
     
     mesh.addVertex(v);
     mesh.addColor(c);
+    
+    last = v;
 }

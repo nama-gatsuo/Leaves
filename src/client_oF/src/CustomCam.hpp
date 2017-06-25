@@ -7,12 +7,13 @@ public:
     void update();
     void look(float lat, float lon);
     void orbit();
+    void transition();
 private:
     ofVec3f la, pos, up;
     ofVec3f tla, tpos, tup;
     
     enum CamMode {
-        LOOKING, ORBITAL
+        LOOKING, ORBITAL, L_TO_O
     } mode;
     
     const int MAX_COUNT = 600;

@@ -12,4 +12,6 @@ private:
     ofVboMesh mesh;
     ofShader shader;
     float radius;
+    
+    ofVec3f last;
 };

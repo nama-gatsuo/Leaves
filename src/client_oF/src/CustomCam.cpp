@@ -5,19 +5,25 @@ CustomCam::CustomCam(){}
 void CustomCam::update(){
     
     count++;
+    float h;
     
     if (mode == LOOKING) {
-        
-        if (count > MAX_COUNT) {
-            orbit();
+        h = 1.1;
+        if (count > 600) {
+            transition();
         }
     } else if (mode == ORBITAL) {
-        
+        h = 1.0;
+    } else if (mode == L_TO_O) {
+        h = 1.0;
+        if (count > 200) {
+            orbit();
+        }
     }
     
     float t = count / (float)MAX_COUNT;
     
-    tpos = center + rad * cos(t) * axisX + rad * sin(t) * axisZ;
+    tpos = center * h + rad * cos(t) * axisX + rad * sin(t) * axisZ;
     
     la = (tla - la) * 0.04 + la;
     pos = (tpos - pos) * 0.04 + pos;
@@ -30,7 +36,7 @@ void CustomCam::update(){
 void CustomCam::look(float lat, float lon){
     
     count = 0;
-    rad = 80.;
+    rad = 40. + ofRandom(40.);
     
     float radius = 400.;
     lat = - PI/2. + lat;
@@ -45,19 +51,16 @@ void CustomCam::look(float lat, float lon){
     axisX = axis.getCrossed(ofVec3f(0,1,0)).normalize();
     axisZ = axisX.getCrossed(axis).normalize();
     
-    float t = count / (float)MAX_COUNT;
-    tpos = center + rad * cos(t) * axisX + rad * sin(t) * axisZ;
+//    float t = count / (float)MAX_COUNT;
+//    tpos = center + rad * cos(t) * axisX + rad * sin(t) * axisZ;
     
     mode = LOOKING;
 }
 
 void CustomCam::orbit(){
     
-    count = 0;
+    count = ofRandom(300);
     rad = 700. + ofRandom(300.);
-    
-    tla = ofVec3f(0.);
-    center = ofVec3f(0.);
     
     ofVec3f axis = ofVec3f(ofRandom(-1,1)*0.5, 1., ofRandom(-1,1)*0.5);
     axis.normalize();
@@ -65,8 +68,18 @@ void CustomCam::orbit(){
     axisX = axis.getCrossed(ofVec3f(0,1,0)).normalize();
     axisZ = axisX.getCrossed(axis).normalize();
     
-    float t = count / (float)MAX_COUNT;
-    tpos = center + rad * cos(t) * axisX + rad * sin(t) * axisZ;
+    tla = ofVec3f(0.);
+    center = ofVec3f(0.);
+    
+//    float t = count / (float)MAX_COUNT;
+//    tpos = center + rad * cos(t) * axisX + rad * sin(t) * axisZ;
     
     mode = ORBITAL;
+}
+
+void CustomCam::transition(){
+    count = 0;
+    center *= 2.0;
+    
+    mode = L_TO_O;
 }
