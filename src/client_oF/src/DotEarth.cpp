@@ -2,7 +2,7 @@
 
 DotEarth::DotEarth(){}
 
-void DotEarth::setup(){
+void DotEarth::setup(float rad){
     
     img.load("img/earth.jpg");
     
@@ -10,13 +10,12 @@ void DotEarth::setup(){
     int h = img.getHeight();
     
     float size = 2.0;
-    float r = 400.;
     for (float s = 0.0; s < TWO_PI; s += 0.01) {
         for (float t = 0.0; t < PI; t += 0.01) {
             ofVec3f v;
-            v.x = r * cos(s) * sin(t);
-            v.z = r * sin(s) * sin(t);
-            v.y = r * cos(t);
+            v.x = rad * cos(s) * sin(t);
+            v.z = rad * sin(s) * sin(t);
+            v.y = rad * cos(t);
             
             float l = size * sin(t);
             
@@ -27,7 +26,7 @@ void DotEarth::setup(){
             ofVec3f n = v.getNormalized();
             
             ofFloatColor c = img.getColor(st.x, st.y);
-            c.a = 0.6;
+            c.a = 0.8;
             
             float grey = (c.r+c.g+c.b) / 3.;
             if (grey > 0.07 && c.g > 0.1) {
@@ -60,16 +59,25 @@ void DotEarth::setup(){
             
             }
             
-            
-            
         }
+        
     }
     
     mesh.setMode(OF_PRIMITIVE_LINES);
     
+    black = ofMesh::sphere(rad * 0.99);
+    
 }
 
 void DotEarth::draw(){
+//    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofEnableDepthTest();
+    ofDisableBlendMode();
     
+    ofPushStyle();
     mesh.draw();
+    ofSetColor(0);
+    black.draw();
+    ofPopStyle();
+    
 }

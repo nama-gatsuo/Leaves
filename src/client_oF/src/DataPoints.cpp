@@ -2,7 +2,9 @@
 
 DataPoints::DataPoints(){}
 
-void DataPoints::setup(){
+void DataPoints::setup(float rad){
+    
+    radius = rad;
     
     ofxJSONElement json;
     
@@ -11,7 +13,7 @@ void DataPoints::setup(){
         
         float lat, lon;
         string sex;
-        float r = 400.;
+        
         for (int i = 0; i < n; i++) {
             
             lat = json[i]["latitude"].asFloat() / 180. * PI;
@@ -19,26 +21,7 @@ void DataPoints::setup(){
             
             sex = json[i]["sex"].asString();
             
-            ofVec3f v;
-            lat = - PI/2. + lat;
-            lon += PI/2.;
-            v.x = r * sin(lon) * sin(lat);
-            v.z = r * cos(lon) * sin(lat);
-            v.y = r * cos(lat);
-            
-            ofVec3f n = v.getNormalized();
-            ofVec3f r = ofVec3f(ofRandom(-1.,1.), ofRandom(-1.,1.), ofRandom(-1.,1.)).normalize();
-            v += n * 6. + r * 6.;
-            
-            ofFloatColor c;
-            if (sex == "Males") {
-                c.setHsb(0.5, 0.9, 0.9);
-            } else {
-                c.setHsb(0.0, 0.9, 0.9);
-            }
-            
-            mesh.addVertex(v);
-            mesh.addColor(c);
+            add(lat, lon, sex == "Males");
         }
         mesh.setMode(OF_PRIMITIVE_POINTS);
     }
@@ -48,7 +31,35 @@ void DataPoints::setup(){
 }
 
 void DataPoints::draw(){
+    
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofDisableDepthTest();
     shader.begin();
     mesh.draw();
     shader.end();
+    ofDisableBlendMode();
+}
+
+void DataPoints::add(float lat, float lon, bool isMale){
+    
+    ofVec3f v;
+    lat = - PI/2. + lat;
+    lon += PI/2.;
+    v.x = radius * sin(lon) * sin(lat);
+    v.z = radius * cos(lon) * sin(lat);
+    v.y = radius * cos(lat);
+    
+    ofVec3f n = v.getNormalized();
+    ofVec3f r = ofVec3f(ofRandom(-1.,1.), ofRandom(-1.,1.), ofRandom(-1.,1.)).normalize();
+    v += n * 6. + r * 6.;
+    
+    ofFloatColor c;
+    if (isMale) {
+        c.setHsb(0.5, 0.9, 0.9);
+    } else {
+        c.setHsb(0.0, 0.9, 0.9);
+    }
+    
+    mesh.addVertex(v);
+    mesh.addColor(c);
 }

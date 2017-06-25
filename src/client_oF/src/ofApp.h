@@ -3,6 +3,9 @@
 #include "ofMain.h"
 #include "DotEarth.hpp"
 #include "DataPoints.hpp"
+#include "CustomCam.hpp"
+
+#include "ofxOsc.h"
 
 class ofApp : public ofBaseApp{
 
@@ -14,7 +17,11 @@ public:
     void keyPressed(int key);
 
 private:
+    const int PORT = 8032;
+    const bool DEBUG = false;
+    ofxOscReceiver receiver;
+    
     DotEarth de;
     DataPoints dp;
-    ofEasyCam cam;
+    CustomCam cam;
 };
