@@ -26,15 +26,22 @@ void DataPoints::setup(float rad){
         mesh.setMode(OF_PRIMITIVE_POINTS);
     }
     
+    numParticles = mesh.getNumVertices();
+    
     shader.load("shader/sprite");
 
 }
 
 void DataPoints::draw(){
     
+    t += 0.0012;
+    
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofDisableDepthTest();
+    
     shader.begin();
+    shader.setUniform1i("last", numParticles-1);
+    shader.setUniform1f("t", t);
     mesh.draw();
     shader.end();
     
@@ -64,5 +71,6 @@ void DataPoints::add(float lat, float lon, bool isMale){
     mesh.addVertex(v);
     mesh.addColor(c);
     
-    last = v;
+    numParticles++;
+    t = 0.0;
 }

@@ -13,5 +13,6 @@ private:
     ofShader shader;
     float radius;
     
-    ofVec3f last;
+    float t;
+    int numParticles;
 };
