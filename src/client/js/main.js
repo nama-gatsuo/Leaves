@@ -1,6 +1,6 @@
 import $ from 'jquery'
 
-const MAX_COUNT = 10;
+const MAX_COUNT = 100;
 let count = 0;
 let sound;
 
