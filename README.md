@@ -29,14 +29,14 @@ It may run in other version of libraries or OS with small modification. Because 
 ### 1.1. Install MySQL
 Download MySQL Community Server from [here](https://dev.mysql.com/downloads/mysql/) and install it.
 ### 1.2. Set MySQL password of root user (optional)
-In Terminal, command below
-```shell
-$ mysqld --skip-grant-tables
-$ mysql -u root
+* When MySQL isn't active, command below in Terminal.
+    ```shell
+    $ mysqld --skip-grant-tables
+    $ mysql -u root
 
-mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'your password';
-```
-For precise explanation, read [this](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html).
+    mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'your password';
+    ```
+* For precise explanation, read [this](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html).
 ### 1.3. Create tables
 * Create database named "suicide_stats"
     ```sql
@@ -81,23 +81,48 @@ For precise explanation, read [this](https://dev.mysql.com/doc/refman/5.7/en/res
     * Import csv in this repository with query below.
         ```sql
         LOAD DATA LOCAL INFILE '/absolute path/Leaves/bin/data/country_sex_age_reason.csv'
-        INTO TABLE country
+        INTO TABLE country_sex_age_reason
         CHARACTER SET utf8
         FIELDS TERMINATED BY ',' ENCLOSED BY '"'
         LINES TERMINATED BY '\r\n';
         ```
 ## 2. Server setup
 ### 2.1. Node.js setup
-Download latest OS or version from [here](https://nodejs.org/) and install it.
+Download latest version from [here](https://nodejs.org/) and install it.
 
 ### 2.2. Install node-module
-* get [nodemon](https://nodemon.io/) in global by command below.
+* Get [nodemon](https://nodemon.io/) in global by command below.
+    ```
+    $ npm install -g nodemon
+    ```
+* Get node modules defined in package.json
+    ```
+    $ cd ~/your path/Leaves
+    $ npm install
+    ```
+### 2.3. Create settings.js
+* create ```settings.js``` in ```/src/server``` directory.
 
+    ```js
+    const settings = {
+        HTTP_PORT: '3307',
+        DB_HOST: 'localhost',
+        DB_USER: 'root',
+        DB_PASS: 'YOUR PASSWORD',
+        DB_NAME: 'suicide_stats',
+        UDP_PORT: '8031',
+        OF_PORT: '8032'
+    };
+
+    export default settings;
+    ```
+* run gulp and build js.
+    ```shell
+    $ gulp
+    ```
+## 3. Run!
+Run this server. (Also you need to run MySQL server.)
+```shell
+nodemon server/server
 ```
-$ npm install -g nodemon
-```
-* get node modules defined in package.json
-```
-$ npm install
-```
-### 2.3.
+and connect your smartphone or other divices in same network with pc's IP and port ```3307```. 
