@@ -55,18 +55,24 @@ For precise explanation, read [this](https://dev.mysql.com/doc/refman/5.7/en/res
     (combined, population, country_code, region, latitude, longitude);
     ```
 * Create table named "country"
-    * Import cities.sql in a downloaded folder to your MySql server.
+    * Create table with query below.
     ```sql
-    CREATE TABLE cities (
-        'id' int(5) unsigned NOT NULL,
-        'code_who' varchar(3) DEFAULT NULL,
-        'code_iso' varchar(2) DEFAULT NULL,
-        'country_name' varchar(50) DEFAULT NULL,
-        PRIMARY KEY ('id')
+    CREATE TABLE country (
+        id int(5) unsigned NOT NULL,
+        code_who varchar(3) DEFAULT NULL,
+        code_iso varchar(2) DEFAULT NULL,
+        country_name varchar(50) DEFAULT NULL,
+        PRIMARY KEY (id)
     );
     ```
-
-
+    * Import csv in this repository with query below.
+    ```sql
+    LOAD DATA LOCAL INFILE '/absolute path/leaves/bin/data/country.csv'
+    INTO TABLE country
+    CHARACTER SET utf8
+    FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+    LINES TERMINATED BY '\r\n';
+    ```
 
 ## 2. Server setup
 ### 2.1. Node.js setup
