@@ -9,12 +9,15 @@ void ofApp::setup(){
     glEnable(GL_POINT_SPRITE);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     
-    de.setup(400.);
-    dp.setup(400.);
+    de.setup(420.);
+    dp.setup(420.);
     
     cam.orbit();
     
+    pe.setup();
+    
     receiver.setup(PORT);
+    server.setName("leaves-of");
 }
 
 //--------------------------------------------------------------
@@ -45,16 +48,30 @@ void ofApp::update(){
         
         dp.add(lat, lon, sex == "Males");
         cam.look(lat, lon);
+        
+        pe.enableNega();
+        fcnt = 0.0;
     }
     
+    if (pe.isNega()) {
+        fcnt += 0.06;
+        if (fcnt > 1.0) pe.disableNega();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
+    pe.begin();
     cam.begin();
     de.draw();
     dp.draw();
     cam.end();
+    pe.end();
+    
+    pe.draw();
+    
+    server.publishFBO(pe.getFbo());
 }
 
 //--------------------------------------------------------------

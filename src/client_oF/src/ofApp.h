@@ -4,8 +4,10 @@
 #include "DotEarth.hpp"
 #include "DataPoints.hpp"
 #include "CustomCam.hpp"
+#include "PostEffect.hpp"
 
 #include "ofxOsc.h"
+#include "ofxSyphon.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,4 +26,9 @@ private:
     DotEarth de;
     DataPoints dp;
     CustomCam cam;
+    
+    PostEffect pe;
+    float fcnt;
+    
+    ofxSyphonServer server;
 };

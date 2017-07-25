@@ -22,7 +22,7 @@ void main() {
     if (gl_VertexID == last) {
         if (t < 1.0) {
             p.xyz = p.xyz * (0.8 + 0.2 * t);
-            size *= (7. - 6. * t);
+            size *= (5. - 4. * t);
         }
     }
 
