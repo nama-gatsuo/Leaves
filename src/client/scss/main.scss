@@ -8,14 +8,39 @@
 .listItem {
     list-style: none;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
     margin: 12px;
     padding: 8px;
     // background: black;
     color: #000;
     border-bottom: #aaa 1px solid;
+    table {
+        .td1 {
+            width: 60%;
+        }
+    }
     .place {
         font-size: 1.5em;
         font-weight: 600;
     }
+    .label {
+        font-weight: 600;
+    }
+    .reason {
+        padding-left: 40px;
+    }
+    div {
+        padding: 3px;
+    }
+}
 
+#ring {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    text-align: center;
+    padding: 150px 0;
+    font-size: 2.0em;
 }

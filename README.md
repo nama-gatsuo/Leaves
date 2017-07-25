@@ -132,7 +132,7 @@ Download latest version from [here](https://nodejs.org/) and install it.
 ## 3. Run!
 * Run this server. (Also you need to run MySQL server.)
     ```shell
-    nodemon server/server
+    $ nodemon server/server
     ```
 * Connect your smartphone or other divices in same network with pc's IP and port ```3307```.
 * Run oF app in the same machine.

@@ -36,53 +36,90 @@ function playSound(buffer){
     source.start(0);
 }
 
+// ring
+let $dring = $('#ring').css({ opacity: 0.92 });
+$dring.click(() => {
+    console.log('start');
+    playSound(sound);
+    $dring.velocity({
+        opacity: 0
+    }, {
+        duration: 500,
+        complete: () => {
+            $dring.remove();
+        }
+    });
+});
+
 // socket
 let socket = io();
 
 socket.on('new', msg => {
-    count++;
+    setTimeout(() => {
+        count++;
 
-    let $list = $('#list');
+        let $list = $('#list');
 
-    let $item = $('<li></li>');
-    $item.addClass('listItem');
+        let $item = $('<li/>');
+        $item.addClass('listItem');
 
-    let $dt = $('<div/>').text(new Date());
-    $dt.addClass('time');
+        let $table = $('<table/>');
+        let $tr = $('<tr/>');
+        $list.prepend($item.append());
 
-    let $dc = $('<div/>').text(msg.city + ', ' + msg.country);
-    $dc.addClass('place');
+        let $dt = $('<div/>').text(new Date());
+        $dt.addClass('time');
 
-    let $dd = $('<div/>').text(msg.sex + ', ' + msg.age);
-    $dd.addClass('demogra');
+        let $dc = $('<div/>').text(msg.city + ', ' + msg.country);
+        $dc.addClass('place');
 
-    let $dr = $('<div/>').text(msg.reason);
-    $dd.addClass('reason');
+        let $ds = $('<div/>').append(
+            $('<span/>').addClass('label').text('SEX: '),
+            $('<span/>').text(msg.sex)
+        );
 
-    $item.append($dt, $dc, $dd, $dr);
-    $list.prepend($item);
+        let $da = $('<div/>').append(
+            $('<span/>').addClass('label').text('AGE: '),
+            $('<span/>').text(msg.age)
+        );
 
-    $item.css({
-        backgroundColor: '#000'
-    });
-    $item.velocity({
-        backgroundColor: '#fff'
-    }, 3000);
+        $item.append($dt, $dc, $ds, $da);
 
-    $item.click(()=>{
-        playSound(sound);
-        console.log('play');
-    });
+        // reason
+        let $ur = $('<ul/>');
+        $ur.addClass('reason');
 
-    if (sound) {
-        playSound(sound);
-        console.log('play');
-    }
+        let reasonArray = msg.reason.split('/');
+        for (let i = 0; i < reasonArray.length; i++) {
+            if (reasonArray[i]){
+                let $lr = $('<li/>').text(reasonArray[i]);
+                $ur.append($lr);
+            }
+        }
 
-    if (count > MAX_COUNT) {
-        let $items = $list.children();
-        let $lastItem = $items[MAX_COUNT-1];
-        $lastItem.remove();
-    }
+        $item.append(
+            $('<div/>').addClass('label').text('REASON: '), $ur
+        );
+
+        $item.css({
+            backgroundColor: '#000'
+        });
+        $item.velocity({
+            backgroundColor: '#fff'
+        }, 3000);
+
+
+        if (sound) {
+            playSound(sound);
+            console.log('play');
+        }
+
+        if (count > MAX_COUNT) {
+            let $items = $list.children();
+            let $lastItem = $items[MAX_COUNT-1];
+            $lastItem.remove();
+        }
+    }, Math.random() * 1000);
+
 
 });
