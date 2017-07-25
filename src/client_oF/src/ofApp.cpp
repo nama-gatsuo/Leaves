@@ -54,7 +54,7 @@ void ofApp::update(){
     }
     
     if (pe.isNega()) {
-        fcnt += 0.06;
+        fcnt += 0.03;
         if (fcnt > 1.0) pe.disableNega();
     }
 }

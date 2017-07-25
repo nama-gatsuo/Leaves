@@ -22,7 +22,7 @@ Development environment is
 * openFrameworks 0.9.8
 * node.js v7.9.0
 
-It may run in other version of libraries or OS with small modification. Because openFrameworks and nodejs can run in multi platform. But for node.js it is better to select exact version (v7.9.0) with version management tool such like [ndenv](https://github.com/riywo/ndenv).
+It may run in other version of libraries or OS with small modification. Because openFrameworks and node.js is designed to multi platform. But as for node.js it is better to select exact version v7.9.0 with such like [ndenv](https://github.com/riywo/ndenv).
 
 # Installation
 ## 1. Database setup
@@ -101,11 +101,11 @@ Download latest version from [here](https://nodejs.org/) and install it.
 
 ### 2.2. Install node-module
 * Get [nodemon](https://nodemon.io/) in global by command below.
-    ```
+    ```shell
     $ npm install -g nodemon
     ```
-* Get node modules defined in package.json
-    ```
+  * Get node modules defined in ```package.json```
+    ```shell
     $ cd ~/your path/Leaves
     $ npm install
     ```
@@ -134,5 +134,5 @@ Download latest version from [here](https://nodejs.org/) and install it.
     ```shell
     $ nodemon server/server
     ```
-* Connect your smartphone or other divices in same network with pc's IP and port ```3307```.
+* Connect with your smartphone or other devices in a same network via web browser to server's IP + port ```3307```.
 * Run oF app in the same machine.
