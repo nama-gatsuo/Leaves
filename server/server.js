@@ -17,14 +17,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = new _app2.default();
 var timer = new _timer2.default(app.server);
 timer.init();
-
-// let io = socketIo.listen(server);
-//
-// io.sockets.on('connection', socket => {
-//     console.log('a user connected');
-//
-//     socket.on('disconnect', () => {
-//         concole.log('a user disconnected');
-//     });
-// });
 //# sourceMappingURL=server.js.map
