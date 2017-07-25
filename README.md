@@ -22,7 +22,7 @@ Development environment is
 * openFrameworks 0.9.8
 * node.js v7.9.0
 
-It may run in other version of libraries or OS with small modification. Because openFrameworks and nodejs can run in multi platform.
+It may run in other version of libraries or OS with small modification. Because openFrameworks and nodejs can run in multi platform. But for node.js it is better to select exact version (v7.9.0) with version management tool such like [ndenv](https://github.com/riywo/ndenv).
 
 # Installation
 ## 1. Database setup
@@ -55,18 +55,27 @@ Download MySQL Community Server from [here](https://dev.mysql.com/downloads/mysq
         (combined, population, country_code, region, latitude, longitude);
         ```
 * Create table named "country"
-    * Create table with query below.
+    1. Create table with query below.
         ```sql
         CREATE TABLE country (
             id int(5) unsigned NOT NULL,
             code_who varchar(3) DEFAULT NULL,
             code_iso varchar(2) DEFAULT NULL,
             country_name varchar(50) DEFAULT NULL,
+            value float DEFAULT NULL,
             PRIMARY KEY (id)
         );
         ```
+    2. Import csv in this repository with query below.
+        ```sql
+        LOAD DATA LOCAL INFILE '/absolute path/Leaves/bin/data/country.csv'
+        INTO TABLE country
+        CHARACTER SET utf8
+        FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+        LINES TERMINATED BY '\r\n';
+        ```
 * Create table named "country_sex_age_reason"
-    * Create table with query below.
+    1. Create table with query below.
         ```sql
         CREATE TABLE country_sex_age_reason (
             id int(3) unsigned NOT NULL,
@@ -78,7 +87,7 @@ Download MySQL Community Server from [here](https://dev.mysql.com/downloads/mysq
             PRIMARY KEY (id)
         );
         ```
-    * Import csv in this repository with query below.
+    2. Import csv in this repository with query below.
         ```sql
         LOAD DATA LOCAL INFILE '/absolute path/Leaves/bin/data/country_sex_age_reason.csv'
         INTO TABLE country_sex_age_reason
@@ -121,8 +130,9 @@ Download latest version from [here](https://nodejs.org/) and install it.
     $ gulp
     ```
 ## 3. Run!
-Run this server. (Also you need to run MySQL server.)
-```shell
-nodemon server/server
-```
-and connect your smartphone or other divices in same network with pc's IP and port ```3307```. 
+* Run this server. (Also you need to run MySQL server.)
+    ```shell
+    nodemon server/server
+    ```
+* Connect your smartphone or other divices in same network with pc's IP and port ```3307```.
+* Run oF app in the same machine.
