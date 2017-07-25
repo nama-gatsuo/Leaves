@@ -8,7 +8,7 @@ It is a data visualization in purpose to think individual death by suicide and m
 [![View in  YouTube](https://img.youtube.com/vi/eW9kozN-roA/0.jpg)](https://www.youtube.com/watch?v=eW9kozN-roA)
 
 This displays the real time simulation of mortality occurrence caused by
-“Self-harm” and “Mental disorder” based on the statistics published by WHO.
+"Self-harm" and "Mental disorder" based on the statistics published by WHO.
 Utilizing these data, it is possible to estimate interval between each occurrence
 and its attribute (age, gender, location, specific reason).
 
@@ -104,11 +104,11 @@ Download latest version from [here](https://nodejs.org/) and install it.
     ```shell
     $ npm install -g nodemon
     ```
-  * Get node modules defined in ```package.json```
-    ```shell
-    $ cd ~/your path/Leaves
-    $ npm install
-    ```
+* Get node modules defined in ```package.json```
+  ```shell
+  $ cd ~/your path/Leaves
+  $ npm install
+  ```
 ### 2.3. Create settings.js
 * create ```settings.js``` in ```/src/server``` directory.
 
