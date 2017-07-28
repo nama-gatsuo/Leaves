@@ -71,13 +71,13 @@ void DotEarth::setup(float rad){
 
 void DotEarth::draw(){
 //    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofEnableDepthTest();
+    //ofEnableDepthTest();
     ofDisableBlendMode();
     
-    ofPushStyle();
+    //ofPushStyle();
     mesh.draw();
-    ofSetColor(0);
-    black.draw();
-    ofPopStyle();
+    //ofSetColor(0);
+    //black.draw();
+    //ofPopStyle();
     
 }
