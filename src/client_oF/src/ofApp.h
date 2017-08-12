@@ -7,7 +7,6 @@
 #include "PostEffect.hpp"
 
 #include "ofxOsc.h"
-#include "ofxSyphon.h"
 
 class ofApp : public ofBaseApp{
 
@@ -30,5 +29,4 @@ private:
     PostEffect pe;
     float fcnt;
     
-    ofxSyphonServer server;
 };

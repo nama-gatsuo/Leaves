@@ -17,7 +17,6 @@ void ofApp::setup(){
     pe.setup();
     
     receiver.setup(PORT);
-    server.setName("leaves-of");
 }
 
 //--------------------------------------------------------------
@@ -71,7 +70,6 @@ void ofApp::draw(){
     
     pe.draw();
     
-    server.publishFBO(pe.getFbo());
 }
 
 //--------------------------------------------------------------
