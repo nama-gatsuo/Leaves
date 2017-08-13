@@ -23,8 +23,6 @@ private:
     ofVboMesh mesh;
     ofShader shader;
     
-   
-    
     vector<CountryData> countries;
     
 };

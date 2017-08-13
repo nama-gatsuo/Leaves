@@ -3,6 +3,7 @@
 EarthLayer::EarthLayer(){}
 
 void EarthLayer::setup(){
+    
     ofFile file;
     file.open("img/world.svg");
     ofBuffer buffer = file.readToBuffer();
@@ -36,8 +37,10 @@ void EarthLayer::setup(){
     fbo.begin();
     ofClear(0);
     for (int i = 0; i < countries.size(); i++) {
+        ofColor c(ofRandom(256),ofRandom(256),ofRandom(256));
+        
         for (int j = 0; j < countries[i].pathes.size(); j++) {
-            countries[i].pathes[j].setColor(ofColor(ofRandom(256),ofRandom(256),ofRandom(256)));
+            countries[i].pathes[j].setColor(c);
             countries[i].pathes[j].draw();
             
         }
@@ -195,7 +198,6 @@ ofPath EarthLayer::stringToPath(string &s, ofVec2f& start){
         }
         
     }
-    
     
     return path;
     

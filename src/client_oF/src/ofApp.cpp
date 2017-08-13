@@ -70,9 +70,9 @@ void ofApp::draw(){
     cam.end();
     pe.end();
     
-    pe.draw();
+    //pe.draw();
     
-    //el.fbo.draw(0,0, 400, 200);
+    el.fbo.draw(0,0);
     
 }
 
