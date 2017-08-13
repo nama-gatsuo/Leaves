@@ -5,6 +5,7 @@
 #include "DataPoints.hpp"
 #include "CustomCam.hpp"
 #include "PostEffect.hpp"
+#include "EarthLayer.hpp"
 
 #include "ofxOsc.h"
 
@@ -28,5 +29,7 @@ private:
     
     PostEffect pe;
     float fcnt;
+    
+    EarthLayer el;
     
 };

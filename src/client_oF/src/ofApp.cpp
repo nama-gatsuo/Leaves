@@ -16,6 +16,8 @@ void ofApp::setup(){
     
     pe.setup();
     
+    el.setup();
+    
     receiver.setup(PORT);
 }
 
@@ -69,6 +71,8 @@ void ofApp::draw(){
     pe.end();
     
     pe.draw();
+    
+    //el.fbo.draw(0,0, 400, 200);
     
 }
 
