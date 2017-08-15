@@ -3,18 +3,22 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofBackground(0);
     
     glEnable(GL_POINT_SPRITE);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     
-    de.setup(420.);
+    me.setup(420.);
     dp.setup(420.);
     
     cam.orbit();
     
     pe.setup();
+    
+    sphere = ofMesh::sphere(410., 40);
+    for (int i = 0; i < sphere.getNumVertices(); i++) {
+        sphere.addColor(ofFloatColor(0.1));
+    }
     
     receiver.setup(PORT);
 }
@@ -22,6 +26,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
+    me.update();
     cam.update();
     
     while (receiver.hasWaitingMessages()) {
@@ -61,19 +66,25 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    pe.begin();
+    //pe.begin();
     cam.begin();
-    de.draw();
-    dp.draw();
-    cam.end();
-    pe.end();
     
-    pe.draw();
+    me.draw();
+    
+    dp.draw();
+    
+    cam.end();
+    //pe.end();
+    
+    //pe.draw();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    if (key == OF_KEY_LEFT) me.enableDense();
+    else if (key == OF_KEY_RIGHT) me.disableDense();
+    else if (key == ' ') cam.look(ofRandom(PI), ofRandom(TWO_PI));
     
 }
 

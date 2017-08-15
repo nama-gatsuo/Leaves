@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "DotEarth.hpp"
 #include "DataPoints.hpp"
+#include "MeshEarth.hpp"
 #include "CustomCam.hpp"
 #include "PostEffect.hpp"
 
@@ -22,10 +22,10 @@ private:
     const bool DEBUG = false;
     ofxOscReceiver receiver;
     
-    DotEarth de;
+    MeshEarth me;
     DataPoints dp;
     CustomCam cam;
-    
+    ofVboMesh sphere;
     PostEffect pe;
     float fcnt;
     
