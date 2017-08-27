@@ -5,28 +5,36 @@ class MeshEarth {
 public:
     void setup(float radius){
         
-        
         ofImage color;
-        
         color.load("img/color.jpg");
-        topo.load("img/height.jpg");
+        
         sea.load("img/sea.jpg");
-        density.load("img/population_density.jpg");
+        
+        texs.assign(6, ofImage());
+        texs[0].load("img/layer/topography.jpg");
+        texs[1].load("img/layer/population-density.jpg");
+        texs[2].load("img/layer/gdp-per-capita.jpg");
+        texs[3].load("img/layer/population-growth.jpg");
+        texs[4].load("img/layer/unmarried-rate.jpg");
+        texs[5].load("img/layer/suicide-rate.jpg");
         
         shader.load("shader/meshEarth");
+        shader.begin();
+        for (int i = 0; i < 6; i++) {
+            shader.setUniformTexture("tex" + ofToString(i), texs[i].getTexture(), i + 1);
+        }
+        shader.setUniformTexture("sea", sea.getTexture(), 7);
+        shader.end();
+        
+        params.assign(6, SmoothValue());
         
         mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
-        int res = 1000;
+        int res = 800;
         
         for (int si = 0; si < res+1; si++) {
             for (int ti = 0; ti < res*2+1; ti++) {
                 float s = PI / res * si;
                 float t = PI / res * ti;
-                
-//                float h = height.getColor(height.getWidth() / (res*2.) * ti,
-//                                          height.getHeight() / res * si).r / 12.;
-//                
-//                float r = radius * (h * 5000. / 6371000 + 1.);
                 
                 ofVec3f v;
                 v.x = radius * sin(t) * sin(s);
@@ -43,54 +51,53 @@ public:
         }
         
         for (int si = 0; si < res; si++) {
-            for (int ti = 0; ti < res*2+1; ti++) {
-                
+            for (int ti = 0; ti < res * 2 + 1; ti++) {
                 mesh.addIndex(ti + si * (res * 2 + 1));
                 mesh.addIndex(ti + (si+1) * (res * 2 + 1));
             }
         }
         
-        topoParam.to(1.);
-        denseParam.to(0.);
+        params[0].to(1.0);
+        current = 0;
     };
     
     void update(){
-        topoParam.update();
-        denseParam.update();
-    }
+        for (int i = 0; i < 6; i++) {
+            params[i].update();
+        }
+    };
     
     void draw(){
         ofDisableBlendMode();
         ofEnableDepthTest();
         
         shader.begin();
-        shader.setUniformTexture("topo", topo.getTexture(), 0);
-        shader.setUniform1f("topoParam", topoParam.getValue());
-        shader.setUniformTexture("density", density.getTexture(), 1);
-        shader.setUniform1f("denseParam", denseParam.getValue());
-        shader.setUniformTexture("sea", sea.getTexture(), 2);
+        
+        for (int i = 0; i < 6; i++) {
+            shader.setUniform1f("p" + ofToString(i), params[i].getValue());
+        }
+        
         mesh.draw(OF_MESH_WIREFRAME);
         shader.end();
     };
     
-    void enableDense(){
-        topoParam.to(0.);
-        denseParam.to(1.);
-    }
-    void disableDense(){
-        topoParam.to(1.);
-        denseParam.to(0.);
-    }
+    void setLayer(int next) {
+        
+        params[current].to(0.0);
+        params[next].to(1.0);
+        current = next;
+    };
     
 private:
     ofVboMesh mesh;
     ofShader shader;
     
     ofImage sea;
-    ofImage density;
-    ofImage topo;
     
-    SmoothValue topoParam;
-    SmoothValue denseParam;
+    // 0: topography, 1: population-density, 2: gdp-per-capita
+    // 3: population-growth, 4: unmarried-rate, 5: suicide-rate
+    vector<ofImage> texs;
+    vector<SmoothValue> params;
     
+    int current;
 };

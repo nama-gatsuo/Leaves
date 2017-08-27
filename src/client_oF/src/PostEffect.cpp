@@ -6,6 +6,8 @@ void PostEffect::setup(){
     s.width = ofGetWidth();
     s.height = ofGetHeight();
     s.internalformat = GL_RGB32F;
+    s.useDepth = true;
+    s.depthStencilAsTexture = true;
     
     base.allocate(s);
     

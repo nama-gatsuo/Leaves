@@ -40,7 +40,7 @@ void CustomCam::look(float lat, float lon){
     
     float radius = 400.;
     lat = - PI/2. + lat;
-    lon += PI/2.;
+    
     center.x = radius * sin(lon) * sin(lat);
     center.z = radius * cos(lon) * sin(lat);
     center.y = radius * cos(lat);

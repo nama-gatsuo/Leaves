@@ -34,7 +34,7 @@ void DataPoints::setup(float rad){
 
 void DataPoints::draw(){
     
-    t += 0.0012;
+    t += 0.0015;
     
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofDisableDepthTest();
@@ -52,7 +52,7 @@ void DataPoints::add(float lat, float lon, bool isMale){
     
     ofVec3f v;
     lat = - PI/2. + lat;
-    //lon += PI/2.;
+    
     v.x = radius * sin(lon) * sin(lat);
     v.z = radius * cos(lon) * sin(lat);
     v.y = radius * cos(lat);

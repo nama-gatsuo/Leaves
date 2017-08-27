@@ -66,7 +66,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    //pe.begin();
+    pe.begin();
     cam.begin();
     
     me.draw();
@@ -74,17 +74,20 @@ void ofApp::draw(){
     dp.draw();
     
     cam.end();
-    //pe.end();
+    pe.end();
     
-    //pe.draw();
+    pe.draw();
     
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key == OF_KEY_LEFT) me.enableDense();
-    else if (key == OF_KEY_RIGHT) me.disableDense();
-    else if (key == ' ') cam.look(ofRandom(PI), ofRandom(TWO_PI));
-    
+    if (key == ' ') cam.look(ofRandom(PI), ofRandom(TWO_PI));
+    else if (key == '0') me.setLayer(0);
+    else if (key == '1') me.setLayer(1);
+    else if (key == '2') me.setLayer(2);
+    else if (key == '3') me.setLayer(3);
+    else if (key == '4') me.setLayer(4);
+    else if (key == '5') me.setLayer(5);
 }
 
