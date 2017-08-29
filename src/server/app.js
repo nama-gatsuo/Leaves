@@ -16,10 +16,6 @@ export default class App {
             res.sendFile(path.join(__dirname, '../public', 'index.html'));
         });
 
-        // this.get('/about', (req, res) => {
-        //     res.send('about this page!');
-        // });
-
         let port = parseInt(settings.HTTP_PORT, 10);
         this.exp.set('port', port);
 

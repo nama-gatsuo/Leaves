@@ -37,11 +37,23 @@ export default class Timer {
 
             console.log('a user connected');
 
+            socket.on('layer', msg => {
+
+                this.udpPort.send({
+                    address: "/layer",
+                    args: [
+                        { type: 'i', value: msg }
+                    ]
+                }, "127.0.0.1", settings.OF_PORT);
+
+                this.io.emit('layer', msg);
+            });
+
             socket.on('disconnect', () => {
                 console.log('user disconnected');
             });
-
         });
+
     }
 
     init(){
@@ -55,6 +67,7 @@ export default class Timer {
 
             this.check();
         });
+
     }
 
     check(){
@@ -148,7 +161,7 @@ export default class Timer {
 
         // send to oF
         this.udpPort.send({
-            address: "/",
+            address: "/new",
             args: [
                 { type: 's', value: this.d.country },
                 { type: 's', value: this.d.city },

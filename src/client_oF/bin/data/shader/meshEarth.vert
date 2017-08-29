@@ -9,10 +9,12 @@ in vec2 texcoord; // oF Default
 
 out vec2 vTexCoord;
 out vec4 vColor;
+out float vIsSea;
+
+uniform sampler2DRect sea;
 
 // 0: topography, 1: population-density, 2: gdp-per-capita
 // 3: population-growth, 4: unmarried-rate, 5: suicide-rate
-
 uniform sampler2DRect tex0;
 uniform sampler2DRect tex1;
 uniform sampler2DRect tex2;
@@ -28,6 +30,10 @@ uniform float p5;
 
 void main(){
     vec3 p = position.xyz;
+
+    vec4 sc = texture(sea, texcoord * textureSize(sea));
+    bool isSea = (sc.r + sc.g + sc.b) > 0.01;
+    vIsSea = isSea ? 1. : 0.;
 
     // height
     float t = 0.;

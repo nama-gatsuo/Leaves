@@ -3,8 +3,11 @@ import $ from 'jquery'
 const MAX_COUNT = 100;
 let count = 0;
 let sound;
+let menuStatus = {
+    current: 0
+};
 
-// sound
+// ----- audio buffer -----
 // http://phiary.me/webaudio-api-getting-started/
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let context = new AudioContext();
@@ -36,10 +39,10 @@ function playSound(buffer){
     source.start(0);
 }
 
-// ring
+// ----- ring to start -----
 let $dring = $('#ring').css({ opacity: 0.92 });
 $dring.click(() => {
-    console.log('start');
+
     playSound(sound);
     $dring.velocity({
         opacity: 0
@@ -51,9 +54,10 @@ $dring.click(() => {
     });
 });
 
-// socket
+// ----- create socket connection -----
 let socket = io();
 
+// ----- get a message -----
 socket.on('new', msg => {
     setTimeout(() => {
         count++;
@@ -109,10 +113,8 @@ socket.on('new', msg => {
         }, 3000);
 
 
-        if (sound) {
-            playSound(sound);
-            console.log('play');
-        }
+        if (sound) playSound(sound);
+
 
         if (count > MAX_COUNT) {
             let $items = $list.children();
@@ -121,5 +123,31 @@ socket.on('new', msg => {
         }
     }, Math.random() * 1000);
 
+});
 
+// ----- click a menu itme -----
+$('.menu-item').click(e => {
+    let id = $(e.currentTarget).attr('value');
+
+    if (menuStatus.current != id) {
+        $('.active').removeClass('active');
+        $(e.currentTarget).addClass('active');
+
+        socket.emit('layer', id);
+
+        menuStatus.current = id;
+    }
+
+});
+
+$(".menu-item[value='"+ menuStatus.current +"']").addClass('active');
+
+socket.on('layer', msg => {
+    if (menuStatus.current != msg) {
+
+        $('.active').removeClass('active');
+        $(".menu-item[value='"+ msg +"']").addClass('active');
+
+        menuStatus.current = msg;
+    }
 });

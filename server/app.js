@@ -43,10 +43,6 @@ var App = function () {
             res.sendFile(_path2.default.join(__dirname, '../public', 'index.html'));
         });
 
-        // this.get('/about', (req, res) => {
-        //     res.send('about this page!');
-        // });
-
         var port = parseInt(_settings2.default.HTTP_PORT, 10);
         this.exp.set('port', port);
 

@@ -22,7 +22,7 @@ Development environment is
 * openFrameworks 0.9.8
 * node.js v7.9.0
 
-It may run in other version of libraries or OS with small modification. Because openFrameworks and node.js is designed to multi platform. But as for node.js it is better to select exact version v7.9.0 with such like [ndenv](https://github.com/riywo/ndenv).
+It may run in other version of libraries or OS with small modification. Because openFrameworks and node.js can run in multi platform. But for node.js it is better to select exact version (v7.9.0) with version management tool (such like [ndenv](https://github.com/riywo/ndenv)).
 
 # Installation
 ## 1. Database setup
@@ -105,10 +105,10 @@ Download latest version from [here](https://nodejs.org/) and install it.
     $ npm install -g nodemon
     ```
 * Get node modules defined in ```package.json```
-  ```shell
-  $ cd ~/your path/Leaves
-  $ npm install
-  ```
+    ```shell
+    $ cd ~/your path/Leaves
+    $ npm install
+    ```
 ### 2.3. Create settings.js
 * create ```settings.js``` in ```/src/server``` directory.
 

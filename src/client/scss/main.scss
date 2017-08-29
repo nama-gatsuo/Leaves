@@ -3,11 +3,11 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .listItem {
     list-style: none;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 200;
     margin: 12px;
     padding: 8px;
@@ -42,5 +42,28 @@
     background: #fff;
     text-align: center;
     padding: 150px 0;
+    font-weight: 600;
     font-size: 2.0em;
+}
+
+#menu {
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    background-color: #000;
+    bottom: 0;
+    padding: 8px;
+    z-index: 99;
+    font-size: 0.9em;
+    .menu-item {
+        list-style: none;
+        display: inline-block;
+        color: #fff;
+        border: 1px #fff solid;
+        padding: 4px 6px;
+        margin: 4px;
+        &.active {
+            background-color: #555;
+        }
+    }
 }

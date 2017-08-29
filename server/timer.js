@@ -32,6 +32,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Timer = function () {
     function Timer(server) {
+        var _this = this;
+
         _classCallCheck(this, Timer);
 
         this.COUNTRYS = [];
@@ -63,6 +65,16 @@ var Timer = function () {
 
             console.log('a user connected');
 
+            socket.on('layer', function (msg) {
+
+                _this.udpPort.send({
+                    address: "/layer",
+                    args: [{ type: 'i', value: msg }]
+                }, "127.0.0.1", _settings2.default.OF_PORT);
+
+                _this.io.emit('layer', msg);
+            });
+
             socket.on('disconnect', function () {
                 console.log('user disconnected');
             });
@@ -72,23 +84,23 @@ var Timer = function () {
     _createClass(Timer, [{
         key: 'init',
         value: function init() {
-            var _this = this;
+            var _this2 = this;
 
             this.db.query('SELECT code_who,code_iso,country_name,value FROM country', function (error, results, fields) {
                 if (error) throw error;
 
                 for (var i = 0; i < results.length; i++) {
-                    _this.SUM += results[i].value;
-                    _this.COUNTRYS.push(results[i]);
+                    _this2.SUM += results[i].value;
+                    _this2.COUNTRYS.push(results[i]);
                 }
 
-                _this.check();
+                _this2.check();
             });
         }
     }, {
         key: 'check',
         value: function check() {
-            var _this2 = this;
+            var _this3 = this;
 
             var coin = Math.random() * this.SUM;
             var current = 0.0;
@@ -124,17 +136,17 @@ var Timer = function () {
                 for (var _i = 0; _i < results.length; _i++) {
                     cur += results[_i][code_who];
                     if (coin < cur) {
-                        _this2.d.sex = results[_i]['sex'];
-                        _this2.d.age = results[_i]['age'];
-                        _this2.d.reason = results[_i]['ghe_cause'];
+                        _this3.d.sex = results[_i]['sex'];
+                        _this3.d.age = results[_i]['age'];
+                        _this3.d.reason = results[_i]['ghe_cause'];
                         break;
                     } else {
                         continue;
                     }
                 }
-                console.log("SEX: " + _this2.d.sex);
-                console.log("AGE: " + _this2.d.age);
-                console.log("REASON: " + _this2.d.reason);
+                console.log("SEX: " + _this3.d.sex);
+                console.log("AGE: " + _this3.d.age);
+                console.log("REASON: " + _this3.d.reason);
             });
 
             // determin city
@@ -152,23 +164,23 @@ var Timer = function () {
                 for (var _i3 = 0; _i3 < results.length; _i3++) {
                     cur += results[_i3].population;
                     if (coin < cur) {
-                        _this2.d.city = results[_i3]['combined'].split(',')[0];
-                        _this2.d.lat = results[_i3]['latitude'];
-                        _this2.d.lon = results[_i3]['longitude'];
+                        _this3.d.city = results[_i3]['combined'].split(',')[0];
+                        _this3.d.lat = results[_i3]['latitude'];
+                        _this3.d.lon = results[_i3]['longitude'];
                         break;
                     } else {
                         continue;
                     }
                 }
-                console.log("CITY: " + _this2.d.city);
-                console.log("coord: " + _this2.d.lat + ", " + _this2.d.lon);
+                console.log("CITY: " + _this3.d.city);
+                console.log("coord: " + _this3.d.lat + ", " + _this3.d.lon);
                 console.log("--");
 
-                _this2.send();
+                _this3.send();
             });
 
             setTimeout(function () {
-                _this2.check();
+                _this3.check();
             }, this.interval);
         }
     }, {
@@ -177,7 +189,7 @@ var Timer = function () {
 
             // send to oF
             this.udpPort.send({
-                address: "/",
+                address: "/new",
                 args: [{ type: 's', value: this.d.country }, { type: 's', value: this.d.city }, { type: 's', value: this.d.age }, { type: 's', value: this.d.sex }, { type: 's', value: this.d.reason }, { type: 'f', value: this.d.lat }, { type: 'f', value: this.d.lon }]
             }, "127.0.0.1", _settings2.default.OF_PORT);
 
