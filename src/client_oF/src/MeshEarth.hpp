@@ -29,7 +29,7 @@ public:
         params.assign(6, SmoothValue());
         
         mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
-        int res = 800;
+        int res = 600;
         
         for (int si = 0; si < res+1; si++) {
             for (int ti = 0; ti < res*2+1; ti++) {
@@ -72,7 +72,6 @@ public:
         ofEnableDepthTest();
         
         shader.begin();
-        
         for (int i = 0; i < 6; i++) {
             shader.setUniform1f("p" + ofToString(i), params[i].getValue());
         }

@@ -31,9 +31,10 @@ void PostEffect::end(){
     ofClear(0,0);
     ofSetColor(255);
     
-    if (bNega) negaConv.begin();
+    negaConv.begin();
+    negaConv.setUniform1f("isNega", bNega?1.:0.);
     base.draw(0,0);
-    if (bNega) negaConv.end();
+    negaConv.end();
     
     composite.end();
     

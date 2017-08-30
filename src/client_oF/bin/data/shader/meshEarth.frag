@@ -1,7 +1,7 @@
 #version 400
 
 in vec4 vColor;
-in vec2 vTexCoord;
+// in vec2 vTexCoord;
 in float vIsSea;
 
 out vec4 outputColor;
@@ -13,7 +13,7 @@ void main(){
     // bool isSea = (sc.r + sc.g + sc.b) > 0.01;
     // if (isSea) discard;
 
-    if (vIsSea == 1.) discard;
+    //if (vIsSea > 0.) discard;
 
     //float grey = (vColor.r + vColor.g + vColor.b)/3.;
     //outputColor = vec4(vec3(grey), 1.);

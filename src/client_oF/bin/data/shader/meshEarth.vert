@@ -38,8 +38,8 @@ void main(){
     // height
     float t = 0.;
     // coloring
-    vec3 c;
-    vec3 col;
+    vec3 c = vec3(0.);
+    vec3 col = vec3(0.);
 
     c = texture(tex0, texcoord * textureSize(tex0)).rgb;
     col += (color.rgb + vec3(0.4)) * p0 * 0.3;
@@ -69,8 +69,7 @@ void main(){
     p *= 0.95 + t;
 
     gl_Position = modelViewProjectionMatrix * vec4(p, 1.);
-    vTexCoord = texcoord;
-
+    // vTexCoord = texcoord;
 
     vColor = vec4(col * 0.8, 1.0);
 
