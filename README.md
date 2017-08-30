@@ -35,6 +35,7 @@ Download MySQL Community Server from [here](https://dev.mysql.com/downloads/mysq
     $ mysql -u root
 
     mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'your password';
+    mysql> UPDATE mysql.user SET authentication_string = PASSWORD('your password') WHERE User = 'root' AND Host = 'localhost';
     ```
 * For precise explanation, read [this](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html).
 ### 1.3. Create tables
