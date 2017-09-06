@@ -59,69 +59,68 @@ let socket = io();
 
 // ----- get a message -----
 socket.on('new', msg => {
-    setTimeout(() => {
-        count++;
 
-        let $list = $('#list');
+    count++;
 
-        let $item = $('<li/>');
-        $item.addClass('listItem');
+    let $list = $('#list');
 
-        let $table = $('<table/>');
-        let $tr = $('<tr/>');
-        $list.prepend($item.append());
+    let $item = $('<li/>');
+    $item.addClass('listItem');
 
-        let $dt = $('<div/>').text(new Date());
-        $dt.addClass('time');
+    let $table = $('<table/>');
+    let $tr = $('<tr/>');
+    $list.prepend($item.append());
 
-        let $dc = $('<div/>').text(msg.city + ', ' + msg.country);
-        $dc.addClass('place');
+    let $dt = $('<div/>').text(new Date());
+    $dt.addClass('time');
 
-        let $ds = $('<div/>').append(
-            $('<span/>').addClass('label').text('SEX: '),
-            $('<span/>').text(msg.sex)
-        );
+    let $dc = $('<div/>').text(msg.city + ', ' + msg.country);
+    $dc.addClass('place');
 
-        let $da = $('<div/>').append(
-            $('<span/>').addClass('label').text('AGE: '),
-            $('<span/>').text(msg.age)
-        );
+    let $ds = $('<div/>').append(
+        $('<span/>').addClass('label').text('SEX: '),
+        $('<span/>').text(msg.sex)
+    );
 
-        $item.append($dt, $dc, $ds, $da);
+    let $da = $('<div/>').append(
+        $('<span/>').addClass('label').text('AGE: '),
+        $('<span/>').text(msg.age)
+    );
 
-        // reason
-        let $ur = $('<ul/>');
-        $ur.addClass('reason');
+    $item.append($dt, $dc, $ds, $da);
 
-        let reasonArray = msg.reason.split('/');
-        for (let i = 0; i < reasonArray.length; i++) {
-            if (reasonArray[i]){
-                let $lr = $('<li/>').text(reasonArray[i]);
-                $ur.append($lr);
-            }
+    // reason
+    let $ur = $('<ul/>');
+    $ur.addClass('reason');
+
+    let reasonArray = msg.reason.split('/');
+    for (let i = 0; i < reasonArray.length; i++) {
+        if (reasonArray[i]){
+            let $lr = $('<li/>').text(reasonArray[i]);
+            $ur.append($lr);
         }
+    }
 
-        $item.append(
-            $('<div/>').addClass('label').text('REASON: '), $ur
-        );
+    $item.append(
+        $('<div/>').addClass('label').text('REASON: '), $ur
+    );
 
-        $item.css({
-            backgroundColor: '#000'
-        });
-        $item.velocity({
-            backgroundColor: '#fff'
-        }, 3000);
-
-
-        if (sound) playSound(sound);
+    $item.css({
+        backgroundColor: '#000'
+    });
+    $item.velocity({
+        backgroundColor: '#fff'
+    }, 3000);
 
 
-        if (count > MAX_COUNT) {
-            let $items = $list.children();
-            let $lastItem = $items[MAX_COUNT-1];
-            $lastItem.remove();
-        }
-    }, Math.random() * 1000);
+    if (sound) playSound(sound);
+
+
+    if (count > MAX_COUNT) {
+        let $items = $list.children();
+        let $lastItem = $items[MAX_COUNT-1];
+        $lastItem.remove();
+    }
 
 });
 
