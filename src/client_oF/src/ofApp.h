@@ -7,6 +7,7 @@
 #include "PostEffect.hpp"
 
 #include "ofxOsc.h"
+#include "ofxQuadWarp.h"
 
 class ofApp : public ofBaseApp {
 
@@ -29,4 +30,5 @@ private:
     PostEffect pe;
     float fcnt;
     
+    ofxQuadWarp warper;
 };

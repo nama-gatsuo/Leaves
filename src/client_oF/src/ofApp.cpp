@@ -4,6 +4,8 @@
 void ofApp::setup(){
     
     ofBackground(0);
+    ofSetFrameRate(30);
+    ofSetVerticalSync(true);
     
     glEnable(GL_POINT_SPRITE);
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
@@ -21,6 +23,14 @@ void ofApp::setup(){
     }
     
     receiver.setup(PORT);
+
+    warper.setSourceRect(ofRectangle(0, 0, 1280, 640));
+    warper.setTopLeftCornerPosition(ofPoint(0, 20));
+    warper.setTopRightCornerPosition(ofPoint(1280, 20));
+    warper.setBottomLeftCornerPosition(ofPoint(0, 660));
+    warper.setBottomRightCornerPosition(ofPoint(1280, 660));
+    warper.setup();
+    warper.load();
 }
 
 //--------------------------------------------------------------
@@ -94,8 +104,21 @@ void ofApp::draw(){
     cam.end();
     pe.end();
     
-    pe.draw();
+    ofMatrix4x4 mat = warper.getMatrix();
     
+    ofPushMatrix();
+    ofMultMatrix(mat);
+    pe.draw();
+    ofPopMatrix();
+    
+    ofSetColor(ofColor::magenta);
+    warper.drawQuadOutline();
+    ofSetColor(ofColor::yellow);
+    warper.drawCorners();
+    ofSetColor(ofColor::magenta);
+    warper.drawHighlightedCorner();
+    ofSetColor(ofColor::red);
+    warper.drawSelectedCorner();
 }
 
 //--------------------------------------------------------------
@@ -107,5 +130,9 @@ void ofApp::keyPressed(int key){
     else if (key == '3') me.setLayer(3);
     else if (key == '4') me.setLayer(4);
     else if (key == '5') me.setLayer(5);
+    else if (key == 'h') warper.toggleShow();
+    else if (key == 'l') warper.load();
+    else if (key == 's') warper.save();
+    
 }
 
