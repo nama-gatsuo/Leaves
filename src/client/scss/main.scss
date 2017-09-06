@@ -46,7 +46,7 @@
     font-size: 2.0em;
 }
 
-#menu {
+#panel {
     position: fixed;
     height: 100px;
     width: 100%;
@@ -55,10 +55,29 @@
     padding: 8px;
     z-index: 99;
     font-size: 0.9em;
+    font-weight: 200;
+    color: #fff;
+
+    table {
+        border-bottom: #fff solid 1px;
+
+        th {
+            display: inline-block;
+            font-weight: 600;
+            padding: 12px;
+            margin-right: 5px;
+        }
+        td {
+            display: inline-block;
+            padding: 12px;
+            font-weight: 200;
+        }
+
+
+    }
     .menu-item {
         list-style: none;
         display: inline-block;
-        color: #fff;
         border: 1px #fff solid;
         padding: 4px 6px;
         margin: 4px;
