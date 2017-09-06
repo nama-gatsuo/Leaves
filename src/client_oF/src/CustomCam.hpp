@@ -11,6 +11,7 @@ public:
 private:
     ofVec3f la, pos, up;
     ofVec3f tla, tpos, tup;
+    float speed = 0.01;
     
     enum CamMode {
         LOOKING, ORBITAL, L_TO_O

@@ -25,8 +25,8 @@ void CustomCam::update(){
     
     tpos = center * h + rad * cos(t) * axisX + rad * sin(t) * axisZ;
     
-    la = (tla - la) * 0.01 + la;
-    pos = (tpos - pos) * 0.01 + pos;
+    la = (tla - la) * speed + la;
+    pos = (tpos - pos) * speed + pos;
     
     lookAt(la);
     setPosition(pos);
@@ -37,6 +37,7 @@ void CustomCam::look(float lat, float lon){
     
     count = 0;
     rad = 40. + ofRandom(40.);
+    speed = 0.01;
     
     float radius = 400.;
     lat = - PI/2. + lat;
@@ -58,6 +59,7 @@ void CustomCam::orbit(){
     
     count = ofRandom(300);
     rad = 800. + ofRandom(200.);
+    speed = 0.01;
     
     ofVec3f axis = ofVec3f(ofRandom(-1,1)*0.5, 1., ofRandom(-1,1)*0.5);
     axis.normalize();
@@ -74,6 +76,8 @@ void CustomCam::orbit(){
 void CustomCam::transition(){
     count = 0;
     center *= 2.0;
+    
+    speed = 0.005;
     
     mode = L_TO_O;
 }
