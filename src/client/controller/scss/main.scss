@@ -17,7 +17,7 @@ body {
     .area_title {
     }
     .area_description {
-        font-size: 0.7em;
+        font-size: 0.9em;
         margin-top: 8px;
     }
 }
@@ -25,14 +25,14 @@ body {
 .menu {
     margin-top: 10px;
     .menu_item {
-        width: 150px;
-        height: 150px;
+        width: 210px;
+        height: 184px;
         vertical-align: top;
         list-style: none;
         display: inline-block;
         border: 1px #fff solid;
-        padding: 4px 6px;
-        margin: 4px;
+        padding: 6px;
+        margin: 6px;
         &.active {
             background-color: #555;
         }
@@ -42,11 +42,11 @@ body {
         }
         .menu_item_detail {
             margin-top: 8px;
-            font-size: 0.7em;
+            font-size: 0.8em;
         }
         .menu_item_source {
             margin-top: 10px;
-            font-size: 0.6em;
+            font-size: 0.7em;
         }
     }
 }

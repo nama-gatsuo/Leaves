@@ -46,7 +46,7 @@ void main(){
     vec3 col = vec3(0.);
 
     c = texture(tex0, texcoord * textureSize(tex0)).rgb;
-    col += (color.rgb + vec3(0.4)) * p0 * 0.3;
+    col += (color.rgb + vec3(0.4)) * p0 * 0.5;
     t += c.r * p0 * 0.02;
 
     c = texture(tex1, texcoord * textureSize(tex1)).rgb;
@@ -72,11 +72,11 @@ void main(){
 
     c = texture(tex6, texcoord * textureSize(tex6)).rgb;
     col += c * p6;
-    t += c.r * p6 * 0.1;
+    t += c.r * p6 * 0.08;
 
     c = texture(tex7, texcoord * textureSize(tex7)).rgb;
     col += c * p7;
-    t += c.r * p7 * 0.1;
+    t += c.r * p7 * 0.08;
 
     p *= 0.95 + t;
 

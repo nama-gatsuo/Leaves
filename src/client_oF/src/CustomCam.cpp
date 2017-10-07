@@ -9,14 +9,14 @@ void CustomCam::update(){
     
     if (mode == LOOKING) {
         h = 1.1;
-        if (count > 600) {
+        if (count > 800) {
             transition();
         }
     } else if (mode == ORBITAL) {
         h = 1.0;
     } else if (mode == L_TO_O) {
         h = 1.0;
-        if (count > 200) {
+        if (count > 400) {
             orbit();
         }
     }
@@ -37,7 +37,7 @@ void CustomCam::look(float lat, float lon){
     
     count = 0;
     rad = 40. + ofRandom(40.);
-    speed = 0.01;
+    speed = 0.003;
     
     float radius = 400.;
     lat = - PI/2. + lat;
@@ -59,7 +59,7 @@ void CustomCam::orbit(){
     
     count = ofRandom(300);
     rad = 800. + ofRandom(200.);
-    speed = 0.01;
+    speed = 0.003;
     
     ofVec3f axis = ofVec3f(ofRandom(-1,1)*0.5, 1., ofRandom(-1,1)*0.5);
     axis.normalize();
@@ -77,7 +77,7 @@ void CustomCam::transition(){
     count = 0;
     center *= 2.0;
     
-    speed = 0.005;
+    speed = 0.003;
     
     mode = L_TO_O;
 }

@@ -29,5 +29,5 @@ void main() {
     vColor = color.rgb * size;
 
     gl_Position = modelViewProjectionMatrix * p;
-    gl_PointSize = size * 800.0 / gl_Position.w;
+    gl_PointSize = size * 1200.0 / gl_Position.w;
 }

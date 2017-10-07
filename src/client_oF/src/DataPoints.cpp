@@ -34,7 +34,7 @@ void DataPoints::setup(float rad){
 
 void DataPoints::draw(){
     
-    t += 0.0015;
+    t += 0.001;
     
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofDisableDepthTest();
