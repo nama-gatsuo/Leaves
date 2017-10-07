@@ -71,7 +71,7 @@ var Timer = function () {
                     address: "/layer",
                     args: [{ type: 'i', value: msg }]
                 }, "127.0.0.1", _settings2.default.OF_PORT);
-
+                console.log('layer change to ' + msg);
                 _this.io.emit('layer', msg);
             });
 

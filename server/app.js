@@ -39,8 +39,11 @@ var App = function () {
         this.exp.use((0, _morgan2.default)('dev'));
         this.exp.use(_express2.default.static(_path2.default.join(__dirname, '../public')));
 
-        this.exp.get('/', function (req, res) {
-            res.sendFile(_path2.default.join(__dirname, '../public', 'index.html'));
+        this.exp.get('/timeline', function (req, res) {
+            res.sendFile(_path2.default.join(__dirname, '../public', 'timeline/index.html'));
+        });
+        this.exp.get('/controller', function (req, res) {
+            res.sendFile(_path2.default.join(__dirname, '../public', 'controller/index.html'));
         });
 
         var port = parseInt(_settings2.default.HTTP_PORT, 10);

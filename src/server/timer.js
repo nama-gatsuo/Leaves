@@ -45,7 +45,7 @@ export default class Timer {
                         { type: 'i', value: msg }
                     ]
                 }, "127.0.0.1", settings.OF_PORT);
-
+                console.log('layer change to ' + msg);
                 this.io.emit('layer', msg);
             });
 

@@ -27,12 +27,14 @@ gulp.task('server', function(){
 });
 
 gulp.task('client:watch', function(){
-    gulp.watch('./src/client/js/*.js', ['js']);
-    gulp.watch('./src/client/scss/*.scss', ['sass']);
+    gulp.watch('./src/client/timeline/js/*.js', ['js:timeline']);
+    gulp.watch('./src/client/controller/js/*.js', ['js:controller']);
+    gulp.watch('./src/client/timeline/scss/*.scss', ['sass:timeline']);
+    gulp.watch('./src/client/controller/scss/*.scss', ['sass:controller']);
 });
 
-gulp.task('js', function(){
-    browserify('./src/client/js/main.js', { debug: false })
+gulp.task('js:timeline', function(){
+    browserify('./src/client/timeline/js/main.js', { debug: false })
         .transform(babelify.configure({
             presets: ['es2015']
         }))
@@ -41,11 +43,11 @@ gulp.task('js', function(){
         .pipe(source('main.js'))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest('./public/js'));
+        .pipe(gulp.dest('./public/timeline/js'));
 });
 
-gulp.task('sass', function(){
-    gulp.src('./src/client/scss/main.scss')
+gulp.task('sass:timeline', function(){
+    gulp.src('./src/client/timeline/scss/main.scss')
         .pipe(
             sass({outputStyle: 'compressed'})
             .on('error', sass.logError)
@@ -55,7 +57,34 @@ gulp.task('sass', function(){
                 autoplefixer: ['last 4 versions']
             }
         }))
-        .pipe(gulp.dest('./public/css'));
+        .pipe(gulp.dest('./public/timeline/css'));
+});
+
+gulp.task('js:controller', function(){
+    browserify('./src/client/controller/js/main.js', { debug: false })
+        .transform(babelify.configure({
+            presets: ['es2015']
+        }))
+        .transform('browserify-shim', { global: true })
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/controller/js'));
+});
+
+gulp.task('sass:controller', function(){
+    gulp.src('./src/client/controller/scss/main.scss')
+        .pipe(
+            sass({outputStyle: 'compressed'})
+            .on('error', sass.logError)
+        )
+        .pipe(pleeease({
+            fallbacks: {
+                autoplefixer: ['last 4 versions']
+            }
+        }))
+        .pipe(gulp.dest('./public/controller/css'));
 });
 
 gulp.task('default', ['server:watch', 'client:watch']);

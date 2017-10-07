@@ -3,16 +3,13 @@ import $ from 'jquery'
 const MAX_COUNT = 100;
 let count = 0;
 let sound;
-let menuStatus = {
-    current: 0
-};
 
 // ----- audio buffer -----
 // http://phiary.me/webaudio-api-getting-started/
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let context = new AudioContext();
 
-getAudioBuffer('/sound/notification.mp3');
+getAudioBuffer('/timeline/sound/notification.mp3');
 
 function getAudioBuffer(url, fn){
     let req = new XMLHttpRequest();
@@ -122,31 +119,4 @@ socket.on('new', msg => {
         $lastItem.remove();
     }
 
-});
-
-// ----- click a menu itme -----
-$('.menu-item').click(e => {
-    let id = $(e.currentTarget).attr('value');
-
-    if (menuStatus.current != id) {
-        $('.active').removeClass('active');
-        $(e.currentTarget).addClass('active');
-
-        socket.emit('layer', id);
-
-        menuStatus.current = id;
-    }
-
-});
-
-$(".menu-item[value='"+ menuStatus.current +"']").addClass('active');
-
-socket.on('layer', msg => {
-    if (menuStatus.current != msg) {
-
-        $('.active').removeClass('active');
-        $(".menu-item[value='"+ msg +"']").addClass('active');
-
-        menuStatus.current = msg;
-    }
 });

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="/controller/css/main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="area" id="particles">
+        <h2 class="area_title">Particles</h2>
+        <div class="area_description">
+            <p>赤：女性、　青：男性</p>
+            <p>WHO(世界保健機関)が、国別・性別・年代・死亡理由別の全数データを持っており、このデータの2015年度（今現在最新）単年度を用いて、単純なシミュレーションを行っている。約40秒が世界における自殺の平均間隔であるため、サーバー上で40秒に一度、統計にもとづいて国別・性別、年代、死亡理由を無作為に選定し、その結果をパーティクルとして新たに追加していく。国にひもづく街のデータはWHOは保持していないため人口に基いた比例で付与している。街は1点の極座標で表現されるため、数が多い場合、球状の房のように見える。球表面からの高さに意味はなく無作為に決定され留まる。</p>
+            <p>グラフィック上には予め10日分のシミュレーション結果のデータが蓄積され表示され、加えて40秒毎に新たなシミュレーション結果を表示し、同時にそのデータ近辺にフォーカスを移す。</p>
+        </div>
+    </div>
+    <div class="area" id="surface">
+        <h2 class="area_title">Surface</h2>
+        <div class="area_description">
+            <p>メッシュ構造の球は、極座標の世界地図を表す。下のボタンを操作することで別の地理別の3Dグラフに変化させることができる。数値の扱い方ははそれぞれ異なるが基本的には、色の輝度および高さが数量の大きさを表す。</p>
+        </div>
+        <ul class="menu">
+            <li class="menu_item" value="0">
+                <h3 class="menu_item_title">地形</h3>
+                <div class="menu_item_detail"></div>
+                <div class="menu_item_source">Source: Google Earth Engine</div>
+            </li>
+            <li class="menu_item" value="1">
+                <h3 class="menu_item_title">人口密度</h3>
+                <div class="menu_item_detail">1平方kmにおける人口。高さは、比例的でなく対数的に変化している。最も低い部分は 0人 最も高い部分5万人以上。（5万人以上は表現していない）</div>
+                <div class="menu_item_source">Source: MapPornのUser投稿</div>
+            </li>
+            <li class="menu_item" value="2">
+                <h3 class="menu_item_title">人口増加率</h3>
+                <div class="menu_item_detail">2014年度に比した2015年度の人口の割合。青：増加、赤：減少</div>
+                <div class="menu_item_source">Source: World Data Bank</div>
+            </li>
+            <li class="menu_item" value="3">
+                <h3 class="menu_item_title">死亡率</h3>
+                <div class="menu_item_detail">2015年の人口における死亡者の割合。</div>
+                <div class="menu_item_source">Source: World Data Bank</div>
+            </li>
+            <li class="menu_item" value="4">
+                <h3 class="menu_item_title">非結婚率</h3>
+                <div class="menu_item_detail">2015年の人口から、既婚者を引いた数の人口における割合</div>
+                <div class="menu_item_source">Source: World Data Bank</div>
+            </li>
+            <li class="menu_item" value="5">
+                <h3 class="menu_item_title">自殺率</h3>
+                <div class="menu_item_detail">2015年の10万人にあたりの自殺者の数</div>
+                <div class="menu_item_source">Source: World Health Organization</div>
+            </li>
+            <li class="menu_item" value="6">
+                <h3 class="menu_item_title">HIV/AIDSによる死亡率</h3>
+                <div class="menu_item_detail">全死亡数におけるHIV/AIDSによる死亡の割合</div>
+                <div class="menu_item_source">Source: World Health Organization</div>
+            </li>
+            <li class="menu_item" value="7">
+                <h3 class="menu_item_title">悪性新生物（ガンを含む）による死亡率</h3>
+                <div class="menu_item_detail">全死亡数における悪性新生物（ガンを含む）による死亡の割合</div>
+                <div class="menu_item_source">Source: World Health Organization</div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="/controller/js/main.js"></script>
+</html>

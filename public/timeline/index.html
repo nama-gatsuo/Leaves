@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="/timeline/css/main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="container">
+        <ul id="list"></ul>
+    </div>
+    <div id="ring">Start</div>
+    <div id="panel">
+        <p>グラフィックでパーティクルとして表示されているデータと同様のデータをタイムラインに表示している。グラフィックには表現されていない死亡理由や年代を含めて時系列で表示しており、直近100件まで表示可能。</p>
+    </div>
+</body>
+<script src="/timeline/js/main.js"></script>
+</html>
