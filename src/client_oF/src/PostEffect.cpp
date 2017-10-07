@@ -3,8 +3,8 @@
 void PostEffect::setup(){
     
     ofFbo::Settings s;
-    s.width = 1280;
-    s.height = 640;
+    s.width = 1920;
+    s.height = 1080;
     s.internalformat = GL_RGB32F;
     s.useDepth = true;
     s.depthStencilAsTexture = true;

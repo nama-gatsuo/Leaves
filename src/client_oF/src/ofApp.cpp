@@ -4,7 +4,7 @@
 void ofApp::setup(){
     
     ofBackground(0);
-    ofSetFrameRate(30);
+//    ofSetFrameRate(30);
     ofSetVerticalSync(true);
     
     glEnable(GL_POINT_SPRITE);
@@ -24,13 +24,13 @@ void ofApp::setup(){
     
     receiver.setup(PORT);
 
-    warper.setSourceRect(ofRectangle(0, 0, 1280, 640));
-    warper.setTopLeftCornerPosition(ofPoint(0, 20));
-    warper.setTopRightCornerPosition(ofPoint(1280, 20));
-    warper.setBottomLeftCornerPosition(ofPoint(0, 660));
-    warper.setBottomRightCornerPosition(ofPoint(1280, 660));
-    warper.setup();
-    warper.load();
+//    warper.setSourceRect(ofRectangle(0, 0, 1280, 640));
+//    warper.setTopLeftCornerPosition(ofPoint(0, 20));
+//    warper.setTopRightCornerPosition(ofPoint(1280, 20));
+//    warper.setBottomLeftCornerPosition(ofPoint(0, 660));
+//    warper.setBottomRightCornerPosition(ofPoint(1280, 660));
+//    warper.setup();
+//    warper.load();
 }
 
 //--------------------------------------------------------------
@@ -82,7 +82,6 @@ void ofApp::update(){
             
         }
         
-        
     }
     
     if (pe.isNega()) {
@@ -104,21 +103,21 @@ void ofApp::draw(){
     cam.end();
     pe.end();
     
-    ofMatrix4x4 mat = warper.getMatrix();
-    
-    ofPushMatrix();
-    ofMultMatrix(mat);
+//    ofMatrix4x4 mat = warper.getMatrix();
+//
+//    ofPushMatrix();
+//    ofMultMatrix(mat);
     pe.draw();
-    ofPopMatrix();
+//    ofPopMatrix();
     
-    ofSetColor(ofColor::magenta);
-    warper.drawQuadOutline();
-    ofSetColor(ofColor::yellow);
-    warper.drawCorners();
-    ofSetColor(ofColor::magenta);
-    warper.drawHighlightedCorner();
-    ofSetColor(ofColor::red);
-    warper.drawSelectedCorner();
+//    ofSetColor(ofColor::magenta);
+//    warper.drawQuadOutline();
+//    ofSetColor(ofColor::yellow);
+//    warper.drawCorners();
+//    ofSetColor(ofColor::magenta);
+//    warper.drawHighlightedCorner();
+//    ofSetColor(ofColor::red);
+//    warper.drawSelectedCorner();
 }
 
 //--------------------------------------------------------------
@@ -130,6 +129,8 @@ void ofApp::keyPressed(int key){
     else if (key == '3') me.setLayer(3);
     else if (key == '4') me.setLayer(4);
     else if (key == '5') me.setLayer(5);
+    else if (key == '6') me.setLayer(6);
+    else if (key == '7') me.setLayer(7);
     else if (key == 'h') warper.toggleShow();
     else if (key == 'l') warper.load();
     else if (key == 's') warper.save();

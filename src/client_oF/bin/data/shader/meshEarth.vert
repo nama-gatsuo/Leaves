@@ -21,12 +21,16 @@ uniform sampler2DRect tex2;
 uniform sampler2DRect tex3;
 uniform sampler2DRect tex4;
 uniform sampler2DRect tex5;
+uniform sampler2DRect tex6;
+uniform sampler2DRect tex7;
 uniform float p0;
 uniform float p1;
 uniform float p2;
 uniform float p3;
 uniform float p4;
 uniform float p5;
+uniform float p6;
+uniform float p7;
 
 void main(){
     vec3 p = position.xyz;
@@ -65,6 +69,14 @@ void main(){
     c = texture(tex5, texcoord * textureSize(tex5)).rgb;
     col += c * p5;
     t += c.r * p5 * 0.1;
+
+    c = texture(tex6, texcoord * textureSize(tex6)).rgb;
+    col += c * p6;
+    t += c.r * p6 * 0.1;
+
+    c = texture(tex7, texcoord * textureSize(tex7)).rgb;
+    col += c * p7;
+    t += c.r * p7 * 0.1;
 
     p *= 0.95 + t;
 

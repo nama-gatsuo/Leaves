@@ -10,23 +10,25 @@ public:
         
         sea.load("img/sea.jpg");
         
-        texs.assign(6, ofImage());
+        texs.assign(8, ofImage());
         texs[0].load("img/layer/topography.jpg");
         texs[1].load("img/layer/population-density.jpg");
         texs[2].load("img/layer/gdp-per-capita.jpg");
         texs[3].load("img/layer/population-growth.jpg");
         texs[4].load("img/layer/unmarried-rate.jpg");
         texs[5].load("img/layer/suicide-rate.jpg");
+        texs[6].load("img/layer/aids.jpg");
+        texs[7].load("img/layer/cancer.jpg");
         
         shader.load("shader/meshEarth");
         shader.begin();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             shader.setUniformTexture("tex" + ofToString(i), texs[i].getTexture(), i + 1);
         }
-        shader.setUniformTexture("sea", sea.getTexture(), 7);
+        shader.setUniformTexture("sea", sea.getTexture(), 9);
         shader.end();
         
-        params.assign(6, SmoothValue());
+        params.assign(8, SmoothValue());
         
         mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
         int res = 600;
@@ -62,7 +64,7 @@ public:
     };
     
     void update(){
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             params[i].update();
         }
     };
@@ -72,7 +74,7 @@ public:
         ofEnableDepthTest();
         
         shader.begin();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             shader.setUniform1f("p" + ofToString(i), params[i].getValue());
         }
         
