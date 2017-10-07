@@ -97,6 +97,7 @@ private:
     
     // 0: topography, 1: population-density, 2: gdp-per-capita
     // 3: population-growth, 4: unmarried-rate, 5: suicide-rate
+    // 6: AIDS, 7; Cancer
     vector<ofImage> texs;
     vector<SmoothValue> params;
     

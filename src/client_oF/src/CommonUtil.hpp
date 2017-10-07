@@ -3,7 +3,7 @@
 
 class SmoothPoint : public ofPoint{
 public:
-    SmoothPoint():mSpeed(0.05){};
+    SmoothPoint():mSpeed(0.03){};
     void update(){
         this->x += (mTarget.x - this->x) * mSpeed;
         this->y += (mTarget.y - this->y) * mSpeed;
