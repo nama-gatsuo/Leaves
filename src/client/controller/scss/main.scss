@@ -15,6 +15,7 @@ body {
     padding: 8px;
     margin: 8px;
     .area_title {
+        border-bottom: 1px #444 solid;
     }
     .area_description {
         font-size: 0.9em;
@@ -25,20 +26,23 @@ body {
 .menu {
     margin-top: 10px;
     .menu_item {
-        width: 210px;
-        height: 184px;
+        width: 206px;
+        height: 176px;
         vertical-align: top;
         list-style: none;
         display: inline-block;
-        border: 1px #fff solid;
-        padding: 6px;
-        margin: 6px;
+        // border: 1px #fff solid;
+        background-color: #444;
+        padding: 8px;
+        margin: 10px 6px;
+        border-radius: 48px;
         &.active {
-            background-color: #555;
+            background-color: #999;
         }
         .menu_item_title {
             text-align: center;
             font-size: 0.9em;
+            border-bottom: 1px #bbb solid;
         }
         .menu_item_detail {
             margin-top: 8px;
