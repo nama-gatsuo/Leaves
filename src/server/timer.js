@@ -159,20 +159,28 @@ export default class Timer {
 
     send(){
 
+        let args = [
+            { type: 's', value: this.d.country },
+            { type: 's', value: this.d.city },
+            { type: 's', value: this.d.age },
+            { type: 's', value: this.d.sex },
+            { type: 's', value: this.d.reason },
+            { type: 'f', value: this.d.lat },
+            { type: 'f', value: this.d.lon }
+        ];
+
         // send to oF
         this.udpPort.send({
             address: "/new",
-            args: [
-                { type: 's', value: this.d.country },
-                { type: 's', value: this.d.city },
-                { type: 's', value: this.d.age },
-                { type: 's', value: this.d.sex },
-                { type: 's', value: this.d.reason },
-                { type: 'f', value: this.d.lat },
-                { type: 'f', value: this.d.lon }
-            ]
-        }, "127.0.0.1", settings.OF_PORT);
+            args: args
+        }, settings.OF_ADDRESS_CENTER, settings.OF_PORT);
+        
+        this.udpPort.send({
+            address: "/new",
+            args: args
+        }, settings.OF_ADDRESS_LR, settings.OF_PORT);
 
+        // send to iPad
         let msg = {
             country: this.d.country,
             city: this.d.city,
