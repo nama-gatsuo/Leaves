@@ -24,13 +24,19 @@ void ofApp::setup(){
     
     receiver.setup(PORT);
 
+//    warper.setSourceRect(ofRectangle(0, 0, 1280, 640));
+//    warper.setTopLeftCornerPosition(ofPoint(0, 20));
+//    warper.setTopRightCornerPosition(ofPoint(1280, 20));
+//    warper.setBottomLeftCornerPosition(ofPoint(0, 660));
+//    warper.setBottomRightCornerPosition(ofPoint(1280, 660));
+//    warper.setup();
+//    warper.load();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
     me.update();
-    dp.update();
     cam.update();
     
     while (receiver.hasWaitingMessages()) {
@@ -97,8 +103,21 @@ void ofApp::draw(){
     cam.end();
     pe.end();
     
+//    ofMatrix4x4 mat = warper.getMatrix();
+//
+//    ofPushMatrix();
+//    ofMultMatrix(mat);
     pe.draw();
-
+//    ofPopMatrix();
+    
+//    ofSetColor(ofColor::magenta);
+//    warper.drawQuadOutline();
+//    ofSetColor(ofColor::yellow);
+//    warper.drawCorners();
+//    ofSetColor(ofColor::magenta);
+//    warper.drawHighlightedCorner();
+//    ofSetColor(ofColor::red);
+//    warper.drawSelectedCorner();
 }
 
 //--------------------------------------------------------------
