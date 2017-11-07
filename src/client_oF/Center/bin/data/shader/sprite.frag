@@ -10,8 +10,8 @@ void main() {
 	float r2 = dot(n.xy, n.xy);
 	n.z = 1.0 - r2;
 
-	float pAlpha = smoothstep(0.0, 1.0, n.z);
+	float pAlpha = smoothstep(0.0, 1., n.z);
 
  	if (pAlpha < 0.001) discard;
-    outputColor = vec4(vColor / r2 * 0.8, pAlpha);
+    outputColor = vec4(vColor / r2 * 0.2, pAlpha);
 }

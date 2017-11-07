@@ -1,6 +1,8 @@
 #include "CustomCam.hpp"
 
-CustomCam::CustomCam(){}
+CustomCam::CustomCam(){
+    ofCamera::setFov(90);
+}
 
 void CustomCam::update(){
     
@@ -38,8 +40,8 @@ void CustomCam::look(float lat, float lon){
     ofSeedRandom(lat + lon);
     
     count = 0;
-    rad = 40. + ofRandom(40.);
-    speed = 0.003;
+    rad = 40.;
+    speed = 0.005;
     
     float radius = 400.;
     lat = - PI/2. + lat;
@@ -60,8 +62,8 @@ void CustomCam::look(float lat, float lon){
 void CustomCam::orbit(){
     
     count = ofRandom(300);
-    rad = 800. + ofRandom(200.);
-    speed = 0.003;
+    rad = 800.;
+    speed = 0.002;
     
     ofVec3f axis = ofVec3f(ofRandom(-1,1)*0.5, 1., ofRandom(-1,1)*0.5);
     axis.normalize();
@@ -79,7 +81,7 @@ void CustomCam::transition(){
     count = 0;
     center *= 2.0;
     
-    speed = 0.003;
+    speed = 0.002;
     
     mode = L_TO_O;
 }

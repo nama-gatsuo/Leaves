@@ -47,38 +47,38 @@ void main(){
 
     c = texture(tex0, texcoord * textureSize(tex0)).rgb;
     col += (color.rgb + vec3(0.4)) * p0 * 0.5;
-    t += c.r * p0 * 0.02;
+    t += (c.r * 0.02 + 0.03) * p0;
 
     c = texture(tex1, texcoord * textureSize(tex1)).rgb;
     col += c * p1;
-    t += c.r * p1 * 0.08;
+    t += c.r * p1 * 0.04;
 
     c = texture(tex2, texcoord * textureSize(tex2)).rgb;
     col += c * p2;
-    t += c.r * p2 * 0.08;
+    t += c.r * p2 * 0.04;
 
     c = texture(tex3, texcoord * textureSize(tex3)).rgb;
     col += c * p3;
-    t -= c.r * p3 * 0.1;
-    t += c.b * p3 * 0.1;
+    t -= c.r * p3 * 0.05;
+    t += c.b * p3 * 0.05;
 
     c = texture(tex4, texcoord * textureSize(tex4)).rgb;
     col += c * p4;
-    t += c.r * p4 * 0.08;
+    t += c.r * p4 * 0.04;
 
     c = texture(tex5, texcoord * textureSize(tex5)).rgb;
     col += c * p5;
-    t += c.r * p5 * 0.08;
+    t += c.r * p5 * 0.04;
 
     c = texture(tex6, texcoord * textureSize(tex6)).rgb;
     col += c * p6;
-    t += c.r * p6 * 0.08;
+    t += c.r * p6 * 0.04;
 
     c = texture(tex7, texcoord * textureSize(tex7)).rgb;
     col += c * p7;
-    t += c.r * p7 * 0.08;
+    t += c.r * p7 * 0.04;
 
-    p *= 0.95 + t;
+    p *= 0.96 + t;
 
     gl_Position = modelViewProjectionMatrix * vec4(p, 1.);
     // vTexCoord = texcoord;

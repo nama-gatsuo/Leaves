@@ -5,7 +5,7 @@ public:
     TailNode(const ofVec3f& pos, const ofFloatColor& col, int index):p(pos){
         
         c = col * 0.1;
-        float s = ofMap(index, 0, 100, 0., 2.);
+        float s = ofMap(index, 0, 100, 0., 1.6);
         ofVec3f axis = pos.getNormalized();
         
         ofMatrix4x4 matrix;
@@ -60,7 +60,7 @@ private:
 class DataTail {
 public:
     void setup(const ofVec3f& endPos, const ofFloatColor& col){
-        float startRatio = 0.8;
+        float startRatio = 0.9;
         head = endPos * startRatio;
         delta = endPos * (1. - startRatio) * (1. / max_count);
         c = col;
