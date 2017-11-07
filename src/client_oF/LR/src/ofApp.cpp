@@ -18,11 +18,6 @@ void ofApp::setup(){
     
     pe.setup();
     
-    sphere = ofMesh::sphere(410., 40);
-    for (int i = 0; i < sphere.getNumVertices(); i++) {
-        sphere.addColor(ofFloatColor(0.1));
-    }
-    
     receiver.setup(PORT);
 
 }
@@ -98,7 +93,7 @@ void ofApp::draw(){
     cam.end();
     pe.end();
     
-    pe.draw();
+    //pe.draw();
 
 }
 
@@ -113,9 +108,6 @@ void ofApp::keyPressed(int key){
     else if (key == '5') me.setLayer(5);
     else if (key == '6') me.setLayer(6);
     else if (key == '7') me.setLayer(7);
-//    else if (key == 'h') warper.toggleShow();
-//    else if (key == 'l') warper.load();
-//    else if (key == 's') warper.save();
     
 }
 

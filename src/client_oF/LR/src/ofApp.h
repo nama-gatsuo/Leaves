@@ -17,19 +17,19 @@ public:
     void draw();
 
     void keyPressed(int key);
-
-private:
-    const int PORT = 8032;
-    const bool DEBUG = false;
-    ofxOscReceiver receiver;
     
     MeshEarth me;
     DataPoints dp;
     DataCloud dc;
     
     CustomCam cam;
-    ofVboMesh sphere;
     PostEffect pe;
+    
+private:
+    const int PORT = 8032;
+    const bool DEBUG = false;
+    ofxOscReceiver receiver;
+    
     float fcnt;
 
 };
