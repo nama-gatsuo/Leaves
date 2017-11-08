@@ -197,12 +197,7 @@ var Timer = function () {
             this.udpPort.send({
                 address: "/new",
                 args: args
-            }, _settings2.default.OF_ADDRESS_CENTER, _settings2.default.OF_PORT);
-
-            this.udpPort.send({
-                address: "/new",
-                args: args
-            }, _settings2.default.OF_ADDRESS_LR, _settings2.default.OF_PORT);
+            }, _settings2.default.OF_ADDRESS, _settings2.default.OF_PORT);
 
             // send to iPad
             var msg = {

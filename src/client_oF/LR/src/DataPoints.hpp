@@ -9,7 +9,7 @@ public:
     void setup(float rad);
     void update();
     void draw();
-    ofVec3f add(float lat, float lon, bool isMale, bool isDefault=false);
+    ofVec3f add(float lat, float lon, bool isMale, bool isDefault = false);
     
 private:
     ofVboMesh mesh;

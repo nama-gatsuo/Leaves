@@ -177,12 +177,7 @@ export default class Timer {
         this.udpPort.send({
             address: "/new",
             args: args
-        }, settings.OF_ADDRESS_CENTER, settings.OF_PORT);
-
-        this.udpPort.send({
-            address: "/new",
-            args: args
-        }, settings.OF_ADDRESS_LR, settings.OF_PORT);
+        }, settings.OF_ADDRESS, settings.OF_PORT);
 
         // send to iPad
         let msg = {

@@ -33,7 +33,7 @@ void CustomCam::update(){
     la = (tla - la) * speed + la;
     pos = (tpos - pos) * speed + pos;
     
-    ofVec3f ray = (la - pos).getNormalized();
+    ray = (la - pos).getNormalized();
     ofVec3f side = ray.getCrossed(ofVec3f(0,1,0));
     up = side.getCrossed(ray);
     
@@ -112,18 +112,20 @@ void CustomCam::transition(){
 void CustomCam::begin(CustomCam::SideCamMode side) {
     
     ofVec3f to;
-    ofVec3f l = getLookAtDir();
     ofVec3f up = getUpDir();
     ofVec3f p = getGlobalPosition();
     float len = (la - p).length();
     
-    if (side == CustomCam::RIGHT) {
-        to = l.getCrossed(up).getNormalized();
-    } else if (side == CustomCam::LEFT) {
-        to = - l.getCrossed(up).getNormalized();
+    to = ray.getCrossed(up).getNormalized();
+    
+    if (side == RIGHT) {
+        lookAt(to * len + p, up);
+    } else if (side == LEFT) {
+        lookAt(- to * len + p, up);
+    } else if (side == CENTER) {
+        lookAt(la, up);
     }
     
-    lookAt(to * len + p, up);
     ofCamera::begin();
     
 }

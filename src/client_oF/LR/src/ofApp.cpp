@@ -16,7 +16,7 @@ void ofApp::setup(){
     
     cam.orbit();
     
-    pe.setup();
+    pe.setup(CANVAS_WIDTH, CANVAS_HEIGHT);
     
     receiver.setup(PORT);
 
@@ -24,6 +24,8 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    countFromBang++;
     
     me.update();
     dp.update();
@@ -52,10 +54,12 @@ void ofApp::update(){
             lon = lon / 180. * PI;
             
             ofVec3f pos = dp.add(lat, lon, sex == "Males");
+            latest.pos = pos;
+            
             cam.look(pos);
             
             pe.enableNega();
-            fcnt = 0;
+            countFromBang = 0;
         
         } else if (addr == "/layer") {
             
@@ -67,24 +71,26 @@ void ofApp::update(){
     }
     
     if (pe.isNega()) {
-        fcnt ++;
-        if (fcnt > 30) pe.disableNega();
+        if (countFromBang > 30) pe.disableNega();
     }
+    
+    ofSetWindowTitle("main");
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-//    pe.begin();
-    cam.ofCamera::begin();
+    pe.begin();
+    cam.begin(CustomCam::CENTER);
     
     me.draw(cam);
     dp.draw();
     dc.draw();
     
     cam.end();
-//    pe.end();
+    pe.end();
     
+    pe.draw(CANVAS_OFFSET, 0);
     ofDrawBitmapString("fps: " + ofToString(ofGetFrameRate()), 10, 30);
 }
 

@@ -4,7 +4,7 @@ class TailNode {
 public:
     TailNode(const ofVec3f& pos, const ofFloatColor& col, int index):p(pos){
         
-        c = col * 0.1;
+        c = col * 0.01;
         float s = ofMap(index, 0, 100, 0.1, 1.5);
         ofVec3f axis = pos.getNormalized();
         
@@ -33,26 +33,27 @@ public:
         
     }
     void update(){
-        life -= delta;
+        count++;
+        float opacity = (float)(max_count - count) / (float)max_count;
         
         for (int i = 0; i < 4; i++) {
-            mesh.setColor(i, c * life);
+            mesh.setColor(i, c * opacity);
         }
     }
     void draw(){
-        mesh.draw(OF_MESH_WIREFRAME);
+        mesh.draw(OF_MESH_FILL);
     }
     
     bool isDead(){
-        return life < 0.;
+        return count > max_count;
     }
     
 private:
     ofVec3f p;
     ofFloatColor c;
     float angle;
-    float life = 1.;
-    float delta = 0.001;
+    int count = 0;
+    int max_count = 800; // sequence frame count
     ofVboMesh mesh;
     
 };
@@ -111,7 +112,7 @@ public:
 private:
     ofVec3f head;
     ofVec3f delta;
-    int interval = 10;
+    int interval = 5;
     int count = 801;
     const int max_count = 800; // sequence frame count
     ofFloatColor c;

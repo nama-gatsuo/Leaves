@@ -10,5 +10,11 @@ public:
     void draw();
     
     shared_ptr<ofApp> main;
+    ofCamera cam;
+    ofVec3f la, up;
+    ofMatrix4x4 mat;
+    bool isFocus = true;
+    
+    PostEffect pe;
 };
 

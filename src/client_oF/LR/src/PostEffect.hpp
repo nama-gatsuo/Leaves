@@ -3,10 +3,10 @@
 
 class PostEffect {
 public:
-    void setup();
+    void setup(int w, int h);
     void begin();
     void end();
-    void draw();
+    void draw(int x, int y);
     
     ofFbo* getFbo();
     

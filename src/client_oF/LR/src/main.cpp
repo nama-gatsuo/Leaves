@@ -4,19 +4,20 @@
 #include "LeftChannel.hpp"
 #include "ofAppGLFWWindow.h"
 
+
+
 int main( ){
     ofGLFWWindowSettings settings;
     
-    settings.width = 1024;
-    settings.height = 768;
+    settings.width = WINDOW_WIDTH;
+    settings.height = WINDOW_HEIGHT;
     settings.setGLVersion(3, 2);
     settings.setPosition(ofVec2f(0,0));
     settings.resizable = false;
     shared_ptr<ofAppBaseWindow> main = ofCreateWindow(settings);
     
-    
-    settings.width = 1024;
-    settings.height = 768;
+    settings.width = WINDOW_WIDTH;
+    settings.height = WINDOW_HEIGHT;
     settings.shareContextWith = main;
     settings.resizable = true;
     settings.setPosition(ofVec2f(200,0));

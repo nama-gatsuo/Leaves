@@ -35,6 +35,7 @@ void DataPoints::setup(float rad){
 
 void DataPoints::update(){
     tail.update();
+    
     if (!tail.isEnd()) {
         mesh.setVertex(mesh.getNumVertices()-1, tail.getHead());
     }
@@ -65,11 +66,13 @@ ofVec3f DataPoints::add(float lat, float lon, bool isMale, bool isDefault){
     to.z = radius * cos(lon) * sin(lat);
     to.y = radius * cos(lat);
     
-    ofVec3f r = ofVec3f(ofRandom(-1.,1.), ofRandom(-0.5,0.5), ofRandom(-1.,1.));
+    float r = ofRandom(0., 5.);
+    float t = ofRandom(0., TWO_PI);
+    ofVec3f offset = ofVec3f(r * cos(t), r * ofRandom(-0.5,0.5), r * sin(t));
     ofMatrix4x4 mat;
     mat.makeRotationMatrix(ofVec3f(0,1,0), to.getNormalized());
     
-    to += r * mat * 5.;
+    to += offset * mat;
     
     ofFloatColor c;
     if (isMale) {

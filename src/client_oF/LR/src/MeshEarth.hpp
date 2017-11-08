@@ -47,7 +47,7 @@ public:
     };
     
     void draw(const ofCamera& cam){
-        float dist = cam.getGlobalPosition().length();
+//        float dist = cam.getGlobalPosition().length();
         
         ofDisableBlendMode();
         ofEnableDepthTest();
@@ -57,12 +57,12 @@ public:
         shader.setUniformTexture("bumpMap", map.getTexture(1), 2);
         
         // level of detail
-        if (dist < 450. && dist > 400.) {
-            large.draw(OF_MESH_WIREFRAME);
-        } else {
-            small.draw(OF_MESH_WIREFRAME);
-        }
-        
+//        if (dist < 450. && dist > 400.) {
+//            large.draw(OF_MESH_WIREFRAME);
+//        } else {
+//            small.draw(OF_MESH_WIREFRAME);
+//        }
+        small.draw(OF_MESH_WIREFRAME);
         shader.end();
     };
     

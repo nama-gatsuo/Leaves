@@ -9,8 +9,16 @@
 
 #include "ofxOsc.h"
 
+const static int WINDOW_WIDTH = 1280;
+const static int WINDOW_HEIGHT = 720;
+const static int CANVAS_WIDTH = 960;
+const static int CANVAS_HEIGHT = 720;
+const static int CANVAS_OFFSET = (WINDOW_WIDTH - CANVAS_WIDTH) / 2;
+
 struct DataRecord {
     ofVec2f coord;
+    ofVec3f pos;
+    
     string country;
     string city;
     string reason;
@@ -35,11 +43,9 @@ public:
     PostEffect pe;
     
     DataRecord latest;
+    int countFromBang = 0;
 private:
     const int PORT = 8032;
     ofxOscReceiver receiver;
-    
-    int fcnt;
-    
     
 };

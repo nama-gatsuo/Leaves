@@ -1,10 +1,10 @@
 #include "PostEffect.hpp"
 
-void PostEffect::setup(){
+void PostEffect::setup(int w, int h){
     
     ofFbo::Settings s;
-    s.width = 1024;
-    s.height = 768;
+    s.width = w;
+    s.height = h;
     s.internalformat = GL_RGB32F;
     s.useDepth = true;
     s.depthStencilAsTexture = true;
@@ -30,18 +30,18 @@ void PostEffect::end(){
     ofClear(0,0);
     ofSetColor(255);
     
-    negaConv.begin();
-    negaConv.setUniform1f("isNega", bNega?1.:0.);
+    if (bNega) negaConv.begin();
+    
     base.draw(0,0);
-    negaConv.end();
+    if (bNega) negaConv.end();
     
     composite.end();
     
 }
 
-void PostEffect::draw(){
+void PostEffect::draw(int x, int y){
     ofSetColor(255);
-    composite.draw(0,0);
+    composite.draw(x, y);
 }
 
 ofFbo* PostEffect::getFbo() { return &composite; }

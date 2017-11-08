@@ -3,7 +3,7 @@
 
 class CustomCam : public ofCamera {
 public:
-    enum SideCamMode { LEFT, RIGHT } side;
+    enum SideCamMode { CENTER, LEFT, RIGHT } side;
     
     CustomCam();
     void setup(float sphereRad);
@@ -15,8 +15,8 @@ public:
     void begin(SideCamMode side);
     
 private:
-    ofVec3f la, pos, up;
-    ofVec3f tla, tpos, tup;
+    ofVec3f la, pos, up, ray;
+    ofVec3f tla, tpos;
     float speed = 0.01;
     
     enum CamMode {
