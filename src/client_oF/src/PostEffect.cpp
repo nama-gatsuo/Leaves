@@ -19,15 +19,15 @@ void PostEffect::setup(int w, int h){
 void PostEffect::begin(){
     
     base.begin();
-    ofClear(0,0);
-    
+    if (bNega) ofClear(255);
+    else ofClear(0);
 }
 void PostEffect::end(){
     
     base.end();
     
     composite.begin();
-    ofClear(0,0);
+    ofClear(0);
     ofSetColor(255);
     
     if (bNega) negaConv.begin();
