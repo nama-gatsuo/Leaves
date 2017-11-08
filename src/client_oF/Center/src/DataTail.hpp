@@ -4,7 +4,7 @@ class TailNode {
 public:
     TailNode(const ofVec3f& pos, const ofFloatColor& col, int index):p(pos){
         
-        c = col * 0.1;
+        c = col * 0.9;
         float s = ofMap(index, 0, 100, 0.1, 1.5);
         ofVec3f axis = pos.getNormalized();
         

@@ -114,6 +114,10 @@ export default class Timer {
                     continue;
                 }
             }
+
+            let exp = new RegExp('/', 'g');
+            this.d.reason = this.d.reason.replace(exp, " > " ) ;
+
             console.log("SEX: " + this.d.sex);
             console.log("AGE: " + this.d.age);
             console.log("REASON: " + this.d.reason);
@@ -174,7 +178,7 @@ export default class Timer {
             address: "/new",
             args: args
         }, settings.OF_ADDRESS_CENTER, settings.OF_PORT);
-        
+
         this.udpPort.send({
             address: "/new",
             args: args

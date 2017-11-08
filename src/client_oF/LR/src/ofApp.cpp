@@ -10,7 +10,7 @@ void ofApp::setup(){
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     
     me.setup(420.);
-    dp.setup(420.);
+    dp.setup(426.);
     dc.setup();
     cam.setup(420.);
     
@@ -41,33 +41,25 @@ void ofApp::update(){
             float lon = m.getArgAsFloat(6);
             string sex = m.getArgAsString(3);
             
-            if (DEBUG) {
-                cout << "Country: " + m.getArgAsString(0) << endl;
-                cout << "City: " + m.getArgAsString(1) << endl;
-                cout << "Age: " + m.getArgAsString(2) << endl;
-                cout << "Sex: " + sex << endl;
-                cout << "Reason: " + m.getArgAsString(4) << endl;
-                cout << "lat: " + ofToString(lat) << endl;
-                cout << "lon: " + ofToString(lon) << endl;
-            }
+            latest.coord = ofVec2f(lon, lat);
+            latest.country = m.getArgAsString(0);
+            latest.city = m.getArgAsString(1);
+            latest.age = m.getArgAsString(2);
+            latest.isMale = sex == "Males";
+            latest.reason = m.getArgAsString(4);
             
             lat = lat / 180. * PI;
             lon = lon / 180. * PI;
             
-            dp.add(lat, lon, sex == "Males");
-            cam.look(lat, lon);
+            ofVec3f pos = dp.add(lat, lon, sex == "Males");
+            cam.look(pos);
             
             pe.enableNega();
-            fcnt = 0.0;
+            fcnt = 0;
         
         } else if (addr == "/layer") {
             
             int id = m.getArgAsInt(0);
-            
-            if (DEBUG) {
-                cout << "layer: " + ofToString(id) << endl;
-            }
-            
             me.setLayer(id);
             
         }
@@ -75,26 +67,25 @@ void ofApp::update(){
     }
     
     if (pe.isNega()) {
-        fcnt += 0.03;
-        if (fcnt > 1.0) pe.disableNega();
+        fcnt ++;
+        if (fcnt > 30) pe.disableNega();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    pe.begin();
-    cam.begin();
+//    pe.begin();
+    cam.ofCamera::begin();
     
-    me.draw();
+    me.draw(cam);
     dp.draw();
     dc.draw();
     
     cam.end();
-    pe.end();
+//    pe.end();
     
-    //pe.draw();
-
+    ofDrawBitmapString("fps: " + ofToString(ofGetFrameRate()), 10, 30);
 }
 
 //--------------------------------------------------------------

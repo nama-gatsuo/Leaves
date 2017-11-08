@@ -144,6 +144,10 @@ var Timer = function () {
                         continue;
                     }
                 }
+
+                var exp = new RegExp('/', 'g');
+                _this3.d.reason = _this3.d.reason.replace(exp, " > ");
+
                 console.log("SEX: " + _this3.d.sex);
                 console.log("AGE: " + _this3.d.age);
                 console.log("REASON: " + _this3.d.reason);
@@ -187,12 +191,20 @@ var Timer = function () {
         key: 'send',
         value: function send() {
 
+            var args = [{ type: 's', value: this.d.country }, { type: 's', value: this.d.city }, { type: 's', value: this.d.age }, { type: 's', value: this.d.sex }, { type: 's', value: this.d.reason }, { type: 'f', value: this.d.lat }, { type: 'f', value: this.d.lon }];
+
             // send to oF
             this.udpPort.send({
                 address: "/new",
-                args: [{ type: 's', value: this.d.country }, { type: 's', value: this.d.city }, { type: 's', value: this.d.age }, { type: 's', value: this.d.sex }, { type: 's', value: this.d.reason }, { type: 'f', value: this.d.lat }, { type: 'f', value: this.d.lon }]
-            }, "127.0.0.1", _settings2.default.OF_PORT);
+                args: args
+            }, _settings2.default.OF_ADDRESS_CENTER, _settings2.default.OF_PORT);
 
+            this.udpPort.send({
+                address: "/new",
+                args: args
+            }, _settings2.default.OF_ADDRESS_LR, _settings2.default.OF_PORT);
+
+            // send to iPad
             var msg = {
                 country: this.d.country,
                 city: this.d.city,

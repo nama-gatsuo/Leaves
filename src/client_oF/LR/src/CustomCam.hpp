@@ -3,6 +3,8 @@
 
 class CustomCam : public ofCamera {
 public:
+    enum SideCamMode { LEFT, RIGHT } side;
+    
     CustomCam();
     void setup(float sphereRad);
     void update();
@@ -10,6 +12,7 @@ public:
     void look(ofVec3f& pos);
     void orbit();
     void transition();
+    void begin(SideCamMode side);
     
 private:
     ofVec3f la, pos, up;

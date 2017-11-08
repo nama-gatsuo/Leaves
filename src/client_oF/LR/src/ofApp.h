@@ -9,6 +9,15 @@
 
 #include "ofxOsc.h"
 
+struct DataRecord {
+    ofVec2f coord;
+    string country;
+    string city;
+    string reason;
+    string age;
+    bool isMale;
+};
+
 class ofApp : public ofBaseApp {
 
 public:
@@ -25,11 +34,12 @@ public:
     CustomCam cam;
     PostEffect pe;
     
+    DataRecord latest;
 private:
     const int PORT = 8032;
-    const bool DEBUG = false;
     ofxOscReceiver receiver;
     
-    float fcnt;
-
+    int fcnt;
+    
+    
 };

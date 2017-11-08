@@ -7,8 +7,8 @@
 int main( ){
     ofGLFWWindowSettings settings;
     
-    settings.width = 200;
-    settings.height = 200;
+    settings.width = 1024;
+    settings.height = 768;
     settings.setGLVersion(3, 2);
     settings.setPosition(ofVec2f(0,0));
     settings.resizable = false;
@@ -23,11 +23,11 @@ int main( ){
     shared_ptr<ofAppBaseWindow> right = ofCreateWindow(settings);
     settings.setPosition(ofVec2f(300,0));
     shared_ptr<ofAppBaseWindow> left = ofCreateWindow(settings);
-    
+
     shared_ptr<ofApp> mainApp(new ofApp);
     shared_ptr<RightApp> rightApp(new RightApp);
     shared_ptr<LeftApp> leftApp(new LeftApp);
-    
+
     rightApp->main = mainApp;
     leftApp->main = mainApp;
     

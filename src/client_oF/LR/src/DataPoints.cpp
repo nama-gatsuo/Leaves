@@ -54,17 +54,22 @@ void DataPoints::draw(){
     ofDisableBlendMode();
 }
 
-void DataPoints::add(float lat, float lon, bool isMale, bool isDefault){
+ofVec3f DataPoints::add(float lat, float lon, bool isMale, bool isDefault){
     
-    ofVec3f v;
+    ofVec3f to;
+    ofVec3f from;
+    
     lat = - PI/2. + lat;
     
-    v.x = radius * sin(lon) * sin(lat);
-    v.z = radius * cos(lon) * sin(lat);
-    v.y = radius * cos(lat);
+    to.x = radius * sin(lon) * sin(lat);
+    to.z = radius * cos(lon) * sin(lat);
+    to.y = radius * cos(lat);
     
-    ofVec3f r = ofVec3f(ofRandom(-1.,1.), ofRandom(-1.,1.), ofRandom(-1.,1.)).normalize();
-    v += r * 6.;
+    ofVec3f r = ofVec3f(ofRandom(-1.,1.), ofRandom(-0.5,0.5), ofRandom(-1.,1.));
+    ofMatrix4x4 mat;
+    mat.makeRotationMatrix(ofVec3f(0,1,0), to.getNormalized());
+    
+    to += r * mat * 5.;
     
     ofFloatColor c;
     if (isMale) {
@@ -72,12 +77,17 @@ void DataPoints::add(float lat, float lon, bool isMale, bool isDefault){
     } else {
         c.setHsb(0.0, 0.9, 0.9);
     }
+    
     if (!isDefault) {
         tail.clear();
-        tail.setup(v, c);
-        v = tail.getHead();
+        tail.setup(to, c);
+        from = tail.getHead();
+    } else {
+        from = to;
     }
-    mesh.addVertex(v);
+    
+    mesh.addVertex(from);
     mesh.addColor(c);
     
+    return to;
 }

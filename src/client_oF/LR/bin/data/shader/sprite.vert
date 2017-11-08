@@ -6,12 +6,7 @@ in vec4 position;
 in vec4 color;
 in vec2 texcoord;
 
-uniform int last;
-uniform float t;
-
 out vec3 vColor;
-
-const float PI = 3.14159265358979323;
 
 void main() {
 
