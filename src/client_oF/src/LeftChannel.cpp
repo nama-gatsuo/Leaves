@@ -13,6 +13,9 @@ void LeftApp::setup(){
 }
 void LeftApp::update(){
     
+    if (main->pe.isNega()) pe.enableNega();
+    else pe.disableNega();
+    
     if (main->countFromBang < 800) {
         isMap = false;
     } else {
@@ -52,7 +55,7 @@ void LeftApp::drawMap(){
     ofDrawLine(st.x, 0, st.x, CANVAS_WIDTH / 2);
     
     int lineHeight = 20;
-    int startHeight = CANVAS_WIDTH / 2 + 20;
+    int startHeight = CANVAS_WIDTH / 2 + 40;
     int startWidth = 50;
     
     ofSetColor(156);
@@ -63,7 +66,7 @@ void LeftApp::drawMap(){
     ofDrawBitmapString("place: ", startWidth, startHeight += lineHeight);
     ofDrawBitmapString("reason: ", startWidth, startHeight += lineHeight);
     
-    startHeight = CANVAS_WIDTH / 2 + 20;
+    startHeight = CANVAS_WIDTH / 2 + 40;
     startWidth = 180;
     
     ofSetColor(255);

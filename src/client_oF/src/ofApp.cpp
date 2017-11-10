@@ -71,7 +71,7 @@ void ofApp::update(){
     }
     
     if (pe.isNega()) {
-        if (countFromBang > 30) pe.disableNega();
+        if (countFromBang > 20) pe.disableNega();
     }
     
     ofSetWindowTitle("main");

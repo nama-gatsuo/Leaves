@@ -16,6 +16,9 @@ void RightApp::setup(){
 }
 void RightApp::update(){
     
+    if (main->pe.isNega()) pe.enableNega();
+    else pe.disableNega();
+    
     if (main->countFromBang < 800) {
         isFocus = false;
     } else {
