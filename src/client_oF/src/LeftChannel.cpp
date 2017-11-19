@@ -51,15 +51,21 @@ void LeftApp::drawMap(){
     ofVec2f st = main->latest.coord / 180. * (CANVAS_WIDTH / 2);
     st.x = CANVAS_WIDTH / 2 + st.x;
     st.y = CANVAS_WIDTH / 4 - st.y;
+    
     ofDrawLine(0, st.y, CANVAS_WIDTH, st.y);
     ofDrawLine(st.x, 0, st.x, CANVAS_WIDTH / 2);
+    
+    if (main->latest.isMale) ofSetColor(255, 128, 0);
+    else ofSetColor(0, 128, 255);
+    
+    ofDrawCircle(st.x, st.y, 6.);
     
     int lineHeight = 20;
     int startHeight = CANVAS_WIDTH / 2 + 40;
     int startWidth = 50;
     
-    ofSetColor(156);
-    ofDrawBitmapString("layer: " + main->me.map.getLayerName(), CANVAS_WIDTH - 260, CANVAS_WIDTH / 2 - 20);
+    ofSetColor(200);
+    ofDrawBitmapString("layer: " + main->me.map.getLayerName(), CANVAS_WIDTH - 260, CANVAS_WIDTH / 2 - 10);
     
     ofDrawBitmapString("age: ", startWidth, startHeight);
     ofDrawBitmapString("gender: ", startWidth, startHeight += lineHeight);
@@ -67,7 +73,7 @@ void LeftApp::drawMap(){
     ofDrawBitmapString("reason: ", startWidth, startHeight += lineHeight);
     
     startHeight = CANVAS_WIDTH / 2 + 40;
-    startWidth = 180;
+    startWidth = 130;
     
     ofSetColor(255);
     ofDrawBitmapString(main->latest.age, startWidth, startHeight);
@@ -84,5 +90,17 @@ void LeftApp::drawMap(){
         s += sarray[i];
         ofDrawBitmapString(s, startWidth, startHeight += lineHeight);
     }
+    int y = ofGetYear();
+    int m = ofGetMonth();
+    int d = ofGetDay();
     
+    int h = ofGetHours();
+    int min = ofGetMinutes();
+    int s = ofGetSeconds();
+    
+    string data = ofToString(y) + "/" + ofToString(m) + "/" + ofToString(d);
+    string time = ofToString(h) + ":" + ofToString(min) + ":" + ofToString(s) + " JST";
+    
+    ofDrawBitmapString(data, ofGetWidth()/2, startHeight += lineHeight);
+    ofDrawBitmapString(time, ofGetWidth()/2, startHeight += lineHeight);
 }

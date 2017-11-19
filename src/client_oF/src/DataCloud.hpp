@@ -9,7 +9,7 @@ public:
         vbo.setMode(OF_PRIMITIVE_POINTS);
         for (int i = 0; i < totalNum; i++) {
             ofVec3f v = ofVec3f(ofRandom(-1,1), ofRandom(-1,1), ofRandom(-1,1)).normalize();
-            v *= ofRandom(700, 1200);
+            v *= ofRandom(500, 800);
             
             vbo.addVertex(v);
             vbo.addColor(ofFloatColor(0.5, 1.0));
