@@ -33,3 +33,8 @@ socket.on('layer', msg => {
         menuStatus.current = msg;
     }
 });
+
+// no scroll
+$(window).on('touchmove.noScroll', function(e) {
+    e.preventDefault();
+});
