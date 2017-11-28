@@ -91,7 +91,7 @@ void ofApp::draw(){
     pe.end();
     
     pe.draw(CANVAS_OFFSET, 0);
-    ofDrawBitmapString("fps: " + ofToString(ofGetFrameRate()), 10, 30);
+    //ofDrawBitmapString("fps: " + ofToString(ofGetFrameRate()), 10, 30);
 }
 
 //--------------------------------------------------------------
