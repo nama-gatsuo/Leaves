@@ -18,7 +18,7 @@ const static int CANVAS_OFFSET = (WINDOW_WIDTH - CANVAS_WIDTH) / 2;
 struct DataRecord {
     ofVec2f coord;
     ofVec3f pos;
-    
+
     string country;
     string city;
     string reason;
@@ -34,18 +34,18 @@ public:
     void draw();
 
     void keyPressed(int key);
-    
+
     MeshEarth me;
     DataPoints dp;
     DataCloud dc;
-    
+
     CustomCam cam;
     PostEffect pe;
-    
+
     DataRecord latest;
     int countFromBang = 0;
 private:
     const int PORT = 8032;
     ofxOscReceiver receiver;
-    
+
 };

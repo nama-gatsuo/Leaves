@@ -29,7 +29,7 @@ void PostEffect::end(){
 
     composite.begin();
     ofClear(0);
-
+    
     if (bNega) negaConv.begin();
     base.draw(0,0);
     if (bNega) negaConv.end();

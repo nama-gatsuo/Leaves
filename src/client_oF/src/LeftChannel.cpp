@@ -107,6 +107,7 @@ void LeftApp::drawMap(){
     string data = ofToString(y) + "/" + ofToString(m) + "/" + ofToString(d);
     string time = strHour + ":" + strMin + ":" + strSec + " JST";
 
+    startHeight = CANVAS_WIDTH / 2 + 40;
     ofDrawBitmapString(data, ofGetWidth()/2, startHeight += lineHeight);
     ofDrawBitmapString(time, ofGetWidth()/2, startHeight += lineHeight);
 }
