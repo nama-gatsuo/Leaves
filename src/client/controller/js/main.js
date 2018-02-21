@@ -24,16 +24,6 @@ $('.menu_item').click(e => {
 
 $(".menu_item[value='"+ menuStatus.current +"']").addClass('active');
 
-socket.on('layer', msg => {
-    if (menuStatus.current != msg) {
-
-        $('.active').removeClass('active');
-        $(".menu_item[value='"+ msg +"']").addClass('active');
-
-        menuStatus.current = msg;
-    }
-});
-
 // no scroll
 $(window).on('touchmove.noScroll', function(e) {
     e.preventDefault();

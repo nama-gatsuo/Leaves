@@ -39,6 +39,7 @@ var Timer = function () {
         this.COUNTRYS = [];
         this.SUM = 0.0;
         this.interval = 40000;
+        this.count = 0;
 
         this.d = {
             country: '', city: '', age: '', sex: '', reason: '',
@@ -72,7 +73,16 @@ var Timer = function () {
                     args: [{ type: 'i', value: msg }]
                 }, "127.0.0.1", _settings2.default.OF_PORT);
                 console.log('layer change to ' + msg);
-                _this.io.emit('layer', msg);
+                // this.io.emit('layer', msg);
+            });
+
+            socket.on('remark', function (msg) {
+
+                _this.udpPort.send({
+                    address: "/remark",
+                    args: [{ type: 'i', value: msg }]
+                }, "127.0.0.1", _settings2.default.OF_PORT);
+                console.log('remarking ' + msg);
             });
 
             socket.on('disconnect', function () {
@@ -102,6 +112,8 @@ var Timer = function () {
         value: function check() {
             var _this3 = this;
 
+            this.count++;
+
             var coin = Math.random() * this.SUM;
             var current = 0.0;
             var code_who = void 0;
@@ -121,6 +133,7 @@ var Timer = function () {
                 }
             }
 
+            console.log("ID: " + this.count);
             console.log("COUNTRY: " + this.d.country);
 
             code_who = code_who.toLowerCase();
@@ -191,7 +204,7 @@ var Timer = function () {
         key: 'send',
         value: function send() {
 
-            var args = [{ type: 's', value: this.d.country }, { type: 's', value: this.d.city }, { type: 's', value: this.d.age }, { type: 's', value: this.d.sex }, { type: 's', value: this.d.reason }, { type: 'f', value: this.d.lat }, { type: 'f', value: this.d.lon }];
+            var args = [{ type: 's', value: this.d.country }, { type: 's', value: this.d.city }, { type: 's', value: this.d.age }, { type: 's', value: this.d.sex }, { type: 's', value: this.d.reason }, { type: 'f', value: this.d.lat }, { type: 'f', value: this.d.lon }, { type: 'i', value: this.count }];
 
             // send to oF
             this.udpPort.send({
@@ -205,7 +218,8 @@ var Timer = function () {
                 city: this.d.city,
                 age: this.d.age,
                 sex: this.d.sex,
-                reason: this.d.reason
+                reason: this.d.reason,
+                id: this.count
             };
             this.io.emit('new', msg);
         }

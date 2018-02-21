@@ -11,6 +11,7 @@ export default class Timer {
         this.COUNTRYS = [];
         this.SUM = 0.0;
         this.interval = 40000;
+        this.count = 0;
 
         this.d = {
             country: '', city: '', age: '', sex: '', reason: '',
@@ -46,7 +47,19 @@ export default class Timer {
                     ]
                 }, "127.0.0.1", settings.OF_PORT);
                 console.log('layer change to ' + msg);
-                this.io.emit('layer', msg);
+                // this.io.emit('layer', msg);
+            });
+
+            socket.on('remark', msg => {
+
+                this.udpPort.send({
+                    address: "/remark",
+                    args: [
+                        { type: 'i', value: msg }
+                    ]
+                }, "127.0.0.1", settings.OF_PORT);
+                console.log('remarking ' + msg);
+
             });
 
             socket.on('disconnect', () => {
@@ -72,6 +85,8 @@ export default class Timer {
 
     check(){
 
+        this.count++;
+
         let coin = Math.random() * this.SUM;
         let current = 0.0;
         let code_who;
@@ -91,6 +106,7 @@ export default class Timer {
             }
         }
 
+        console.log("ID: " + this.count);
         console.log("COUNTRY: " + this.d.country);
 
         code_who = code_who.toLowerCase();
@@ -163,6 +179,8 @@ export default class Timer {
 
     send(){
 
+
+
         let args = [
             { type: 's', value: this.d.country },
             { type: 's', value: this.d.city },
@@ -170,7 +188,8 @@ export default class Timer {
             { type: 's', value: this.d.sex },
             { type: 's', value: this.d.reason },
             { type: 'f', value: this.d.lat },
-            { type: 'f', value: this.d.lon }
+            { type: 'f', value: this.d.lon },
+            { type: 'i', value: this.count },
         ];
 
         // send to oF
@@ -185,7 +204,8 @@ export default class Timer {
             city: this.d.city,
             age: this.d.age,
             sex: this.d.sex,
-            reason: this.d.reason
+            reason: this.d.reason,
+            id: this.count
         };
         this.io.emit('new', msg);
     }

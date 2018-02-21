@@ -39,6 +39,16 @@ void DataPoints::update(){
     if (!tail.isEnd()) {
         mesh.setVertex(mesh.getNumVertices()-1, tail.getHead());
     }
+    
+    vector<DataMark>::iterator it;
+    for (it = marks.begin(); it < marks.end(); it++) {
+        if (it->isDead) {
+            marks.erase(it);
+        } else {
+            it->update();
+        }
+    }
+    
 }
 
 void DataPoints::draw(){
@@ -51,7 +61,11 @@ void DataPoints::draw(){
     shader.end();
 
     tail.draw();
-
+    vector<DataMark>::iterator it;
+    for (it = marks.begin(); it < marks.end(); it++) {
+        it->draw();
+    }
+    
     ofDisableBlendMode();
 }
 
@@ -95,6 +109,11 @@ ofVec3f DataPoints::add(float lat, float lon, bool isMale, bool isDefault){
     return to;
 }
 
-void DataPoints::remark(){
+void DataPoints::remark(ofVec3f& p){
+    
+    marks.push_back(DataMark(p));
+    if (marks.size() > 10) {
+        marks.erase(marks.begin());
+    }
     
 }

@@ -40,6 +40,7 @@ void ofApp::update(){
             float lat = m.getArgAsFloat(5);
             float lon = m.getArgAsFloat(6);
             string sex = m.getArgAsString(3);
+            int id = m.getArgAsInt(7);
 
             latest.coord = ofVec2f(lon, lat);
             latest.country = m.getArgAsString(0);
@@ -58,16 +59,23 @@ void ofApp::update(){
 
             pe.enableNega();
             countFromBang = 0;
-
+            
+            // keep in records
+            records.insert(make_pair(id, latest));
+            if (records.size() > 100) {
+                records.erase(records.begin());
+            }
+            
         } else if (addr == "/layer") {
 
             int id = m.getArgAsInt(0);
             me.setLayer(id);
 
         } else if (addr == "/remark") {
-
+            
             int id = m.getArgAsInt(0);
-
+            dp.remark(records[id].pos);
+            cout << records[id].country << endl;
         }
 
     }

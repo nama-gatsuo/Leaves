@@ -43,6 +43,7 @@ public:
     PostEffect pe;
 
     DataRecord latest;
+    map<int, DataRecord> records;
     int countFromBang = 0;
 private:
     const int PORT = 8032;

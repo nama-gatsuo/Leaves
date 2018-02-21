@@ -63,6 +63,7 @@ socket.on('new', msg => {
 
     let $item = $('<li/>');
     $item.addClass('listItem');
+    $item.val(msg.id);
 
     let $table = $('<table/>');
     let $tr = $('<tr/>');
@@ -107,8 +108,12 @@ socket.on('new', msg => {
     });
     $item.velocity({
         backgroundColor: '#fff'
-    }, 3000);
-
+    }, { duration: 3000, easing: 'ease-out' });
+    
+    $item.click(e => {
+        let id = $(e.currentTarget).val();
+        socket.emit('remark', id);
+    });
 
     if (sound) playSound(sound);
 
